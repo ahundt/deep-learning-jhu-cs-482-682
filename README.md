@@ -56,17 +56,17 @@ Open your web browser and go to [http://localhost:8888](http://localhost:8888).
 
 For each of the following situations analyze **What, How and, Why**:
 
-    - What does each change do mathematically?
-    - What does each change do algorithmically?
-    - How and why does the loss, accuracy, validation loss, and validation accuracy change?
-    - How and why does the training time change? (if at all)
-    - Explain why you would want to apply such a change to your model.
-    - After each question return to the parameters to their original settings unless the next question says otherwise.
-    - Run on Fashion-MNIST unless the instructions say otherwise.
-    - Include a screenshot of your tensorboard scalars for each situation and compare the effect of the hyperparameter changes.
-        - The labels and pictures must be very clear.
-        - Don't forget you can move the folders from your `../data` directory and back into it.
-    - Every run should
+  - What does each change do mathematically?
+  - What does each change do algorithmically?
+  - How and why does the loss, accuracy, validation loss, and validation accuracy change?
+  - How and why does the training time change? (if at all)
+  - Explain why you would want to apply such a change to your model.
+  - After each question return to the parameters to their original settings unless the next question says otherwise.
+  - Run on Fashion-MNIST unless the instructions say otherwise.
+  - Include a screenshot of your tensorboard scalars for each situation and compare the effect of the hyperparameter changes.
+      - The labels and pictures must be very clear.
+      - Don't forget you can move the folders from your `../data` directory and back into it.
+  - Every run should
 
 Extra credit if you set up hyperparameter tuning to run everything in one go.
 There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
