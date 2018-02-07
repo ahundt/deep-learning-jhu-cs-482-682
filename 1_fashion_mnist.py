@@ -36,8 +36,9 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
-parser.add_argument('--log-interval', type=int, default=10, metavar='N',
-                    help='how many batches to wait before logging training status')
+parser.add_argument('--log_interval', type=int, default=100, metavar='N',
+                    help="""how many batches to wait before logging detailed
+                            training status, 0 means never log """)
 parser.add_argument('--dataset', type=str, default='mnist', metavar='N',
                     help='Options are mnist and fashion_mnist')
 parser.add_argument('--data_dir', type=str, default='../data/', metavar='N',
@@ -95,7 +96,10 @@ callback_params = {'epochs': args.epochs,
                                'loss': np.array([]),
                                'val_acc': np.array([]),
                                'val_loss': np.array([])}}
-callbacks = callbacks.CallbackList([callbacks.BaseLogger(), callbacks.TQDMCallback()])
+callbacks = callbacks.CallbackList(
+    [callbacks.BaseLogger(),
+     callbacks.TQDMCallback(),
+     callbacks.CSVLogger(filename=training_run_dir + training_run_name + '.csv')])
 callbacks.set_params(callback_params)
 
 writer = SummaryWriter(log_dir=training_run_dir, comment=args.dataset + '_embedding_training')
@@ -172,17 +176,19 @@ def train(epoch, total_minibatch_count):
             'size': np.array(len(target))
         }
 
-        # put all the logs in tensorboard
-        for name, value in six.iteritems(batch_logs):
-                writer.add_scalar(name, value, global_step=total_minibatch_count)
         batch_logs['batch'] = np.array(batch_idx)
         callbacks.on_batch_end(batch_idx, batch_logs)
 
-        # put all the parameters in tensorboard histograms
-        for name, param in model.named_parameters():
-            name = name.replace('.', '/')
-            writer.add_histogram(name, param.data.cpu().numpy(), global_step=total_minibatch_count)
-            writer.add_histogram(name + '/gradient', param.grad.data.cpu().numpy(), global_step=total_minibatch_count)
+        if args.log_interval != 0 and total_minibatch_count % args.log_interval == 0:
+            # put all the logs in tensorboard
+            for name, value in six.iteritems(batch_logs):
+                    writer.add_scalar(name, value, global_step=total_minibatch_count)
+
+            # put all the parameters in tensorboard histograms
+            for name, param in model.named_parameters():
+                name = name.replace('.', '/')
+                writer.add_histogram(name, param.data.cpu().numpy(), global_step=total_minibatch_count)
+                writer.add_histogram(name + '/gradient', param.grad.data.cpu().numpy(), global_step=total_minibatch_count)
 
         total_minibatch_count += 1
 

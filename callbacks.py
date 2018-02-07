@@ -799,9 +799,10 @@ class CSVLogger(Callback):
         if self.keys is None:
             self.keys = sorted(logs.keys())
 
-        if self.model.stop_training:
-            # We set NA so that csv parsers do not fail for this last epoch.
-            logs = dict([(k, logs[k]) if k in logs else (k, 'NA') for k in self.keys])
+        # commenting because in this setting self.model is not defined
+        # if self.model.stop_training:
+        #     # We set NA so that csv parsers do not fail for this last epoch.
+        #     logs = dict([(k, logs[k]) if k in logs else (k, 'NA') for k in self.keys])
 
         if not self.writer:
             class CustomDialect(csv.excel):
