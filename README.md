@@ -4,7 +4,7 @@ Deep learning JHU CS 482 682 assignments
 [![Build Status](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682.svg?token=PLqid21E6Q2dJvLJs4aD&branch=master)](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682)
 
 
-# Programming Assignment 1
+# Programming Assignment 1 (100 points total)
 
 This assignment should be done in groups of 3. A minimum of 4 answers should be submitted every 7 days starting on the release date of the assignment. This assignment will take several days of CPU time if you don't have a GPU, and that's the reason for the staggered deadlines.
 
@@ -12,55 +12,29 @@ We will be primarily using the [Fashion-MNIST](https://arxiv.org/pdf/1708.07747.
 
 ![Fashion-MNIST](https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/doc/img/fashion-mnist-sprite.png)
 
-A single 10 epoch run should take about 15 minutes on a 2 year old laptop.
-
+A CPU only 10 epoch run should take about 15 minutes on a 4 year old laptop. Much of your time might be executing training runs in the background on your computer. This means you need to plan for up to 24 hours of total training time! Making a plan for this assignment, installing the software ahead of time, setting a schedule, and submitting on time is 100% your responsibility.
 
 ## Installation
 
+Install [miniconda](https://conda.io/docs/user-guide/install/index.html), a python package manager.
 
-Install pytorch as detailed at [pytorch.org](http://pytorch.org/):
+
+Install [pytorch](http://pytorch.org/):
 
 ```
-pip3 install http://download.pytorch.org/whl/cpu/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl
+conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tensorflow-tensorboard tqdm pytorch-cpu torchvision -c pytorch
 ```
 
 If you have a GPU you'd like to use installation would be different for every machine so, unfortunately, we can only provide support for CPU considering we have such a large class.
 
 
-```
-
-# locally installed libraries
-if [ -d $HOME/lib ] ; then
-  # load libraries and programs installed locally
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/lib
-  export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/lib
-  export PYTHONPATH=$PYTHONPATH:$HOME/lib
-fi
-
-# locally installed binaries
-if [ -d $HOME/bin ] ; then
-  export PATH=$PATH:$HOME/bin
-fi
-
-# pip installs user packages here, for example:
-# pip3 install numpy --upgrade --user
-# https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUSERBASE
-if [ -d $HOME/.local/bin ] ; then
-  export PATH=$HOME/.local/bin:$PATH
-fi
-
-# pip installs user packages here, for example:
-# pip3 install numpy --upgrade --user
-if [ -d $HOME/.local ] ; then
-  export PYTHONUSERBASE=$HOME/.local/
-fi
+Install the visualization tools:
 
 ```
-
-Install the relevant libraries:
-
-```
-pip3 install tensorflow-tensorboard tensorboardX torchvision onnx tqdm --user --upgrade
+source activate dl-jhu-env
+which python
+conda list
+pip install --upgrade pytest flake8 tensorboardX onnx
 ```
 
 Fork and then clone the repository on GitHub
@@ -96,9 +70,17 @@ tensorboard --port 8888 --logdir ../data
 
 Open your web browser and go to [http://localhost:8888](http://localhost:8888).
 
+
+Run all your experiments:
+
+```
+sh 1_fashion_mnist_experiments.sh
+```
+
+
 ## Questions
 
-For each of the following situations analyze **What, How and, Why**:
+For each of the following questions (#1-15) analyze **What, How and, Why**:
 
   - What does each change do mathematically?
   - What does each change do algorithmically?
@@ -110,17 +92,15 @@ For each of the following situations analyze **What, How and, Why**:
   - Include a screenshot of your tensorboard scalars for each situation and compare the effect of the hyperparameter changes.
       - The labels and pictures must be very clear.
       - Don't forget you can move the folders from your `../data` directory and back into it.
-  - Every run should
 
 Extra credit if you set up hyperparameter tuning to run everything in one go.
 There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
 
-### Varying Datasets
+### Varying Datasets (3 points)
 
-1. What is the difference between the performance of mnist and fashion-mnist?
-    - Take a screenshot of the images from each in tensorboard.
+1. Compare the performance of mnist and fashion-mnist
 
-### Varying Hyperparameters
+### Varying Hyperparameters (33 points)
 
 2. Train for twice as many epochs for both mnist and fashion_mnist.
     - [Fashion 10 epochs, MNIST 10 epochs, Fashion 20 epochs, MNIST 20 epochs]
@@ -146,7 +126,7 @@ There is also no need to re-run the default setting over and over again, just re
 
 9. Add a Dropout layer immediately after the Batch Normalization from the previous question.
 
-10. Move the Batch Normalizaton just below the Dropout from the previous question.
+10. Move the Batch Normalizaton layer just below the Dropout layer from the previous question.
     - Compare 9 with 10 and explain what happened.
     - You may want to do a quick search of the current literature for this one.
 
@@ -156,7 +136,7 @@ There is also no need to re-run the default setting over and over again, just re
     - In addition to the standard questions, what did you choose and why?
 
 
-### Become the ultimate Fashion-MNIST model
+### Become the ultimate Fashion-MNIST model (50 points)
 
 13. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
     - A minimum of 92% validation accuracy is required for full credit.
@@ -165,9 +145,25 @@ There is also no need to re-run the default setting over and over again, just re
     - Please write your own code
     - The best performer in the class will get a prize!
 
-### Fine tuning
+### Fine tuning between datasets (14 points)
 
-14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing it at all.
+14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
 
-15. Reduce your SGD learning rate by 100x, and train mnist on your ultimate Fashion-MNIST model
-     - Compare this to your original MNIST training run
+15. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
+     - Compare this to your original MNIST training run and the previous question
+
+
+## Requirements
+
+- Address all TODOs including those in
+    - `1_fashion_mnist.py`
+    - `1_fashion_mnist_experiments.sh`
+- Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks.
+- Your code must pass the travis CI tests, and that is where we will evaluate your ultimate model's results.
+- You must provide a markdown file `1_fashion_mnist_answers.md` with your answers to questions 1-15
+    - It should include the accompanying tensorboard photos.
+- The line with `python 1_fashion_mnist.py --dataset fashion_mnist` is the only line in `.travis.yml` which you may modify to improve your ultimate model's results.
+- If execution of the travis script does not end indicating you pass, question 13 is considered incomplete.
+- It should be easy to view a diff including the changes you made for your final code submission.
+- You may be required to merge a change to this assignment if a correction is required.
+- Have fun!
