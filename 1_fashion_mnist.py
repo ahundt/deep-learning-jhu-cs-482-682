@@ -74,10 +74,13 @@ else:
 
 
 def timeStamped(fname, fmt='%Y-%m-%d-%H-%M-%S_{fname}'):
+    """ Add a timestamp to your training run's name.
+    """
     # http://stackoverflow.com/a/5215012/99379
     return datetime.datetime.now().strftime(fmt).format(fname=fname)
 
 training_run_name = timeStamped(args.dataset + '_' + args.name)
+
 # Create the dataset, mnist or fasion_mnist
 dataset_dir = os.path.join(args.data_dir, args.dataset)
 training_run_dir = os.path.join(args.data_dir, training_run_name)
@@ -169,7 +172,6 @@ class Q13UltimateNet(nn.Module):
 # TODO add all the other models here if their parameter is specified
 if args.model == 'default':
     model = Net()
-    print('default<><<')
 elif args.model == 'q13_ultimate':
     model = Q13UltimateNet()
 
