@@ -158,6 +158,7 @@ There is also no need to re-run the default setting over and over again, just re
 - Address all TODOs including those in
     - `1_fashion_mnist.py`
     - `1_fashion_mnist_experiments.sh`
+    - `1_fashion_mnis_answers.md`
 - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks.
 - Your code must pass the travis CI tests, and that is where we will evaluate your ultimate model's results.
 - You must provide a markdown file `1_fashion_mnist_answers.md` with your answers to questions 1-15
