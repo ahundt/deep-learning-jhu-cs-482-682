@@ -21,31 +21,40 @@ from tensorboardX import SummaryWriter
 import callbacks
 
 # Training settings
-parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-parser.add_argument('--batch-size', type=int, default=256, metavar='N',
+parser = argparse.ArgumentParser(description='Deep Learning JHU Assignment 1 - Fashion-MNIST')
+parser.add_argument('--batch-size', type=int, default=256, metavar='B',
                     help='input batch size for training (default: 64)')
-parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
+parser.add_argument('--test-batch-size', type=int, default=1000, metavar='TB',
                     help='input batch size for testing (default: 1000)')
-parser.add_argument('--epochs', type=int, default=10, metavar='N',
+parser.add_argument('--epochs', type=int, default=10, metavar='E',
                     help='number of epochs to train (default: 10)')
 parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
-parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
+parser.add_argument('--optimizer', type=str, default='sgd', metavar='O',
+                    help='Optimizer options are sgd, adam, rms_prop')
+parser.add_argument('--momentum', type=float, default=0.5, metavar='MO',
                     help='SGD momentum (default: 0.5)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
-parser.add_argument('--log_interval', type=int, default=100, metavar='N',
+parser.add_argument('--log_interval', type=int, default=100, metavar='I',
                     help="""how many batches to wait before logging detailed
                             training status, 0 means never log """)
-parser.add_argument('--dataset', type=str, default='mnist', metavar='N',
+parser.add_argument('--dataset', type=str, default='mnist', metavar='D',
                     help='Options are mnist and fashion_mnist')
-parser.add_argument('--data_dir', type=str, default='../data/', metavar='N',
+parser.add_argument('--data_dir', type=str, default='../data/', metavar='F',
                     help='Where to put data')
 parser.add_argument('--name', type=str, default='', metavar='N',
                     help="""A name for this training run, this
                             affects the directory so use underscores and not spaces.""")
+parser.add_argument('--model', type=str, default='default', metavar='M',
+                    help="""Options are default, q7_0.5x_channels, q7_1x_channels,
+                            q7_2x_channels, q8_batchnorm, q9_dropout, q10_dropout_batchnorm,
+                            q11_extra_conv, q12_remove_layer, q13_ultimate.""")
+parser.add_argument('--test', type=str, default='', metavar='T',
+                    help="""Run a unit test to make sure all models can be created,
+                            options are the empty string, no test runs, or 'models'.""")
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -68,7 +77,7 @@ def timeStamped(fname, fmt='%Y-%m-%d-%H-%M-%S_{fname}'):
     # http://stackoverflow.com/a/5215012/99379
     return datetime.datetime.now().strftime(fmt).format(fname=fname)
 
-training_run_name = timeStamped(args.dataset + args.name)
+training_run_name = timeStamped(args.dataset + '_' + args.name)
 # Create the dataset, mnist or fasion_mnist
 dataset_dir = os.path.join(args.data_dir, args.dataset)
 training_run_dir = os.path.join(args.data_dir, training_run_name)
@@ -110,8 +119,11 @@ label = test_dataset.test_labels[:100]
 features = images.view(100, 784)
 writer.add_embedding(features, metadata=label, label_img=images.unsqueeze(1))
 
+# TODO Add classes for every option listed under the --model parser argument above.
 
-# Create the neural network
+# Define the neural network classes
+
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -130,7 +142,50 @@ class Net(nn.Module):
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
 
-model = Net()
+
+class Q7HalfChannelsNet(nn.Module):
+    def __init__(self):
+        super(Q7HalfChannelsNet, self).__init__()
+        # TODO Implement me
+        print('TODO implement me')
+
+    def forward(self, x):
+        # TODO Implement me
+        print('TODO implement me')
+
+
+class Q13UltimateNet(nn.Module):
+
+    def __init__(self):
+        super(Q13UltimateNet, self).__init__()
+        # TODO Implement me
+        print('TODO implement me')
+
+    def forward(self, x):
+        # TODO Implement me
+        print('TODO implement me')
+
+
+# TODO add all the other models here if their parameter is specified
+if args.model == 'default':
+    model = Net()
+    print('default<><<')
+elif args.model == 'q13_ultimate':
+    model = Q13UltimateNet()
+
+else:
+    raise ValueError('Unknown model type: ' + str(args.model))
+
+
+if args.test == 'models':
+    # TODO create all models and at least call their init and forward functions
+    model = Net()
+    model = Q13UltimateNet()
+    batch_size = 1000
+    test_batch_size = 1000
+    epochs_to_run = 1
+else:
+    epochs_to_run = args.epochs
 
 
 writer.add_graph(model, images[:2])
@@ -138,7 +193,17 @@ writer.add_graph(model, images[:2])
 if args.cuda:
     model.cuda()
 
-optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+print('args.optimizer: ' + args.optimizer)
+if args.optimizer == 'sgd':
+    print('sgd<<<<')
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+elif args.optimizer == 'adam':
+    optimizer = optim.Adam(model.parameters())
+elif args.optimizer == 'rmsprop':
+    optimizer = optim.RMSprop(model.parameters())
+else:
+    raise ValueError('Unsupported optimizer: ' + args.optimizer)
+
 total_minibatch_count = 0
 
 
@@ -201,6 +266,7 @@ def train(epoch, total_minibatch_count):
 
 
 def test(epoch, total_minibatch_count):
+    # Validation Testing
     model.eval()
     test_loss = 0
     correct = 0
@@ -228,12 +294,19 @@ def test(epoch, total_minibatch_count):
             epoch, test_loss, correct, len(test_loader.dataset),
             100. * correct / len(test_loader.dataset)))
 
+    return acc
+
+# Run the primary training loop, starting with validation accuracy of 0
+val_acc = 0
 callbacks.on_train_begin()
-for epoch in range(1, args.epochs + 1):
+for epoch in range(1, epochs_to_run + 1):
     callbacks.on_epoch_begin(epoch)
     # train for 1 epoch
     total_minibatch_count = train(epoch, total_minibatch_count)
     # validate progress on test dataset
-    test(epoch, total_minibatch_count)
+    val_acc = test(epoch, total_minibatch_count)
 callbacks.on_train_end()
 writer.close()
+
+if val_acc > 0.92 and val_acc <= 1.0:
+    print("Congratulations, you beat the Question 13 minimum with ({:.2f}%) validation accuracy!".format(val_acc))

@@ -22,20 +22,17 @@ install:
   - conda info -a
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip numpy chainer torchvision tensorflow-tensorboard tqdm pytorch-cpu torchvision -c pytorch
+  - conda create -q -n dl-jhu-env python=$TRAVIS_PYTHON_VERSION pip numpy chainer torchvision tensorflow-tensorboard tqdm pytorch-cpu torchvision -c pytorch
   # some stuff is pip other things are conda, see https://github.com/ContinuumIO/anaconda-issues/issues/1429
-  - source activate test-environment
+  - source activate dl-jhu-env
   - which python
   - conda list
   - pip install --upgrade pytest flake8 tensorboardX onnx
   # - python setup.py install
 
+before_script:
+   flake8 .
 script:
-  - python 1_fashion_mnist.py
+  - PYTHONPATH=$PWD:$PYTHONPATH py.test --pep8 -m pep8 -n0;
+  - python 1_fashion_mnist.py --test models
   - python 1_fashion_mnist.py --dataset fashion_mnist
-  # - flake8 tensorboardX
-  # - pytest
-  # # Your test script goes here
-  # - pip uninstall -y tensorboardX
-  # - pip install tensorboardX
-  # - pytest
