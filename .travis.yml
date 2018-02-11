@@ -31,8 +31,7 @@ install:
   # - python setup.py install
 
 before_script:
-   flake8 .
-script:
   - PYTHONPATH=$PWD:$PYTHONPATH py.test --pep8 -m pep8 -n0;
+script:
   - python 1_fashion_mnist.py --test models
   - python 1_fashion_mnist.py --dataset fashion_mnist
