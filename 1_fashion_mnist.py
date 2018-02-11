@@ -132,6 +132,7 @@ class Net(nn.Module):
 
 model = Net()
 
+
 writer.add_graph(model, images[:2])
 
 if args.cuda:

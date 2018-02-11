@@ -126,13 +126,13 @@ There is also no need to re-run the default setting over and over again, just re
     - [Fashion 10 epochs, MNIST 10 epochs, Fashion 20 epochs, MNIST 20 epochs]
     - How is this similar and different previous runs?
 
-3. Change the SGD Learning Rate
-    - [0.1x, 1x, +10x]
+3. Change the SGD Learning Rate by a factor of
+    - [0.1x, 1x, 10x]
 
 4. Compare Optimizers
     - [SGD, Adam, Rmsprop]
 
-5. Set the dropout layer to
+5. Set the dropout layer to a dropout rate of
     - [0, 0.25, 0.5, 0.9, 1]
 
 6. Change the batch size:
@@ -147,16 +147,19 @@ There is also no need to re-run the default setting over and over again, just re
 9. Add a Dropout layer immediately after the Batch Normalization from the previous question.
 
 10. Move the Batch Normalizaton just below the Dropout from the previous question.
+    - Compare 9 with 10 and explain what happened.
     - You may want to do a quick search of the current literature for this one.
 
-12. Add one extra Conv2D layer, and remove another layer of your choice.
+11. Add one extra Conv2D layer
+
+12. Remove a layer of your choice
     - In addition to the standard questions, what did you choose and why?
 
 
 ### Become the ultimate Fashion-MNIST model
 
 13. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
-    - A minimum of 90% validation accuracy is required for full credit.
+    - A minimum of 92% validation accuracy is required for full credit.
     - Make sure to save your best model checkpoints or you'll be out of luck.
     - Feel free to use outside literature
     - Please write your own code
