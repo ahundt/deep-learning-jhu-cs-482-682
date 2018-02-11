@@ -1,6 +1,8 @@
 # deep-learning-jhu-cs-482-682
 Deep learning JHU CS 482 682 assignments
 
+[![Build Status](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682.svg?token=PLqid21E6Q2dJvLJs4aD&branch=master)](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682)
+
 
 # Programming Assignment 1
 
@@ -15,8 +17,50 @@ A single 10 epoch run should take about 15 minutes on a 2 year old laptop.
 
 ## Installation
 
+
+Install pytorch as detailed at [pytorch.org](http://pytorch.org/):
+
 ```
-pip2 install tensorflow-tensorboard tensorboardX torchvision onnx tqdm --user --upgrade
+pip3 install http://download.pytorch.org/whl/cpu/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl
+```
+
+If you have a GPU you'd like to use installation would be different for every machine so, unfortunately, we can only provide support for CPU considering we have such a large class.
+
+
+```
+
+# locally installed libraries
+if [ -d $HOME/lib ] ; then
+  # load libraries and programs installed locally
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/lib
+  export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/lib
+  export PYTHONPATH=$PYTHONPATH:$HOME/lib
+fi
+
+# locally installed binaries
+if [ -d $HOME/bin ] ; then
+  export PATH=$PATH:$HOME/bin
+fi
+
+# pip installs user packages here, for example:
+# pip3 install numpy --upgrade --user
+# https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUSERBASE
+if [ -d $HOME/.local/bin ] ; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
+
+# pip installs user packages here, for example:
+# pip3 install numpy --upgrade --user
+if [ -d $HOME/.local ] ; then
+  export PYTHONUSERBASE=$HOME/.local/
+fi
+
+```
+
+Install the relevant libraries:
+
+```
+pip3 install tensorflow-tensorboard tensorboardX torchvision onnx tqdm --user --upgrade
 ```
 
 Fork and then clone the repository on GitHub
