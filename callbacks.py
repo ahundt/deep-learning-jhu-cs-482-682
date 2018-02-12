@@ -294,8 +294,8 @@ class ModelCheckpoint(Callback):
             be `min`, etc. In `auto` mode, the direction is
             automatically inferred from the name of the monitored quantity.
         save_weights_only: if True, then only the model's weights will be
-            saved (`model.save_weights(filepath)`), else the full model
-            is saved (`model.save(filepath)`).
+            saved (`torch.save(self.model.state_dict(), filepath)`), else the full model
+            is saved (`torch.save(self.model.state_dict(), filepath)`).
         period: Interval (number of epochs) between checkpoints.
     """
 
@@ -332,6 +332,7 @@ class ModelCheckpoint(Callback):
                 self.best = np.Inf
 
     def on_epoch_end(self, epoch, logs=None):
+        import torch
         logs = logs or {}
         self.epochs_since_last_save += 1
         if self.epochs_since_last_save >= self.period:
@@ -351,9 +352,9 @@ class ModelCheckpoint(Callback):
                                      current, filepath))
                         self.best = current
                         if self.save_weights_only:
-                            self.model.save_weights(filepath, overwrite=True)
+                            torch.save(self.model.state_dict(), filepath)
                         else:
-                            self.model.save(filepath, overwrite=True)
+                            torch.save(self.model.state_dict(), filepath)
                     else:
                         if self.verbose > 0:
                             print('\nEpoch %05d: %s did not improve' %
@@ -362,9 +363,9 @@ class ModelCheckpoint(Callback):
                 if self.verbose > 0:
                     print('\nEpoch %05d: saving model to %s' % (epoch + 1, filepath))
                 if self.save_weights_only:
-                    self.model.save_weights(filepath, overwrite=True)
+                    torch.save(self.model.state_dict(), filepath)
                 else:
-                    self.model.save(filepath, overwrite=True)
+                    torch.save(self.model.state_dict(), filepath)
 
 
 class EarlyStopping(Callback):

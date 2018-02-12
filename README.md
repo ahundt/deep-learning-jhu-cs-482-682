@@ -3,6 +3,31 @@ Deep learning JHU CS 482 682 assignments
 
 [![Build Status](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682.svg?token=PLqid21E6Q2dJvLJs4aD&branch=master)](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682)
 
+## Requirements for assignments
+
+- Answer all 15 of the questions above
+- Address all TODOs, for example in assignment 01:
+    - `1_fashion_mnist.py`
+    - `1_fashion_mnist_experiments.sh`
+    - `1_fashion_mnis_answers.md`
+- Your code must pass the travis CI tests
+    - The travis CI output is where we will evaluate your ultimate model's validation performance
+
+    - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks  built into the travis CI tests
+    - The model for any question that is tested with the `--test models` flag is considered incomplete.
+- You must fill out the markdown file `01_fashion_mnist_answers.md` with your answers to questions 1-15
+    - It should include the accompanying tensorboard photos.
+- The line with `python 01_fashion_mnist.py --dataset fashion_mnist` is the only line in `.travis.yml` which you may modify to improve your ultimate model's results.
+
+- It should be easy to view a diff including the changes you made for your final code submission.
+- You may be required to merge a change to this assignment if a correction is required.
+- If you make/fix something cool (except answers) that you can share with the class we'd like a pull request!
+- We will grade the final github commit made before the deadline which passes Travis CI.
+    - Travis may run beyond the deadline.
+    - Out of time errors mean the test did not pass Travis CI.
+- Have fun!
+
+
 
 # Programming Assignment 1 (100 points total)
 
@@ -122,6 +147,9 @@ There is also no need to re-run the default setting over and over again, just re
     - [0.5x, 1x, 2x]
     - Note: The input values of each layer will need to match the previous layer.
 
+
+# Programming Assignment 2 (work in progress) (100 points total)
+
 8. Add a Batch Normalization Layer after the first convolution.
 
 9. Add a Dropout layer immediately after the Batch Normalization from the previous question.
@@ -152,27 +180,3 @@ There is also no need to re-run the default setting over and over again, just re
 15. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
      - Compare this to your original MNIST training run and the previous question
 
-
-## Requirements
-
-- Answer all 15 of the questions above
-- Address all TODOs including those in
-    - `1_fashion_mnist.py`
-    - `1_fashion_mnist_experiments.sh`
-    - `1_fashion_mnis_answers.md`
-- Your code must pass the travis CI tests
-    - The travis CI output is where we will evaluate your ultimate model's validation performance
-
-    - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks  built into the travis CI tests
-    - The model for any question that is tested with the `--test models` flag is considered incomplete.
-- You must fill out the markdown file `1_fashion_mnist_answers.md` with your answers to questions 1-15
-    - It should include the accompanying tensorboard photos.
-- The line with `python 1_fashion_mnist.py --dataset fashion_mnist` is the only line in `.travis.yml` which you may modify to improve your ultimate model's results.
-
-- It should be easy to view a diff including the changes you made for your final code submission.
-- You may be required to merge a change to this assignment if a correction is required.
-- If you make/fix something cool (except answers) that you can share with the class we'd like a pull request!
-- We will grade the final github commit made before the deadline which passes Travis CI.
-    - Travis may run beyond the deadline.
-    - Out of time errors mean the test did not pass Travis CI.
-- Have fun!
