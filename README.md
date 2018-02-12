@@ -1,7 +1,7 @@
 # deep-learning-jhu-cs-482-682
 Deep learning JHU CS 482 682 assignments
 
-[![Build Status](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682.svg?token=PLqid21E6Q2dJvLJs4aD&branch=master)](https://travis-ci.com/ahundt/deep-learning-jhu-cs-482-682)
+[![Build Status](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682.svg?branch=master)](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682)
 
 ## Requirements for assignments
 
