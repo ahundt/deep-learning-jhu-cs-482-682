@@ -5,31 +5,53 @@ Deep learning JHU CS 482 682 assignments
 
 ## Requirements for assignments
 
-- Answer all 15 of the questions above
+These requirements will apply to all the assignments, but we use p01 as an example:
+
+- Answer all of the questions by filling out the markdown file `01_fashion_mnist_answers.md` with your answers
+    - It should include the accompanying screenshots, if applicable.
 - Address all TODOs, for example in assignment 01:
-    - `1_fashion_mnist.py`
-    - `1_fashion_mnist_experiments.sh`
-    - `1_fashion_mnis_answers.md`
+    - `p01_fashion_mnist.py`
+    - `p01_fashion_mnist_experiments.sh`
+    - `p01_fashion_mnist_answers.md`
 - Your code must pass the travis CI tests
     - The travis CI output is where we will evaluate your ultimate model's validation performance
-
     - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks  built into the travis CI tests
-    - The model for any question that is tested with the `--test models` flag is considered incomplete.
-- You must fill out the markdown file `01_fashion_mnist_answers.md` with your answers to questions 1-15
-    - It should include the accompanying tensorboard photos.
-- The line with `python 01_fashion_mnist.py --dataset fashion_mnist` is the only line in `.travis.yml` which you may modify to improve your ultimate model's results.
+    - If tests do not pass, or the test raises the python `NotImplementedError` exception the question is considered incomplete.
+    - Tests passing does not guarantee your code is correct.
 
 - It should be easy to view a diff including the changes you made for your final code submission.
 - You may be required to merge a change to this assignment if a correction is required.
-- If you make/fix something cool (except answers) that you can share with the class we'd like a pull request!
+- If you make/fix something cool that you can share with the class we'd like a pull request! (no answers please)
 - We will grade the final github commit made before the deadline which passes Travis CI.
     - Travis may run beyond the deadline.
     - Out of time errors mean the test did not pass Travis CI.
 - Have fun!
 
+# Learning to use GitHub
 
+You may not be familiar with [GitHub](github.com), fortunately they provide many [GitHub Guides](https://guides.github.com/) to help you get started! Here are the most important:
 
-# Programming Assignment 1 (100 points total)
+- [Hello World](https://guides.github.com/activities/hello-world/) - the very basics
+- [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - this is the format your answers file should use
+- [Forking Projects](https://guides.github.com/activities/forking/) - how to work on your own personal copy
+- [Setting Up GitHub Classroom Group Assignments](https://youtu.be/-52quDR2QSc) - How to set up your group
+
+# Modifying your .travis.yml
+
+If you want to run your training scripts on travis you can simply update the appropriate line.
+```
+python p01_fashion_mnist.py --dataset fashion_mnist
+```
+
+might become
+
+```
+python p01_fashion_mnist.py --dataset fashion_mnist --lr 0.1
+```
+
+Be sure that your unit tests are correct and passing in the final submission or it could affect your grade!
+
+# Programming Assignment 1 (24 points total)
 
 This assignment should be done in groups of 3. A minimum of 4 answers should be submitted every 7 days starting on the release date of the assignment. This assignment will take several days of CPU time if you don't have a GPU, and that's the reason for the staggered deadlines.
 
@@ -39,7 +61,7 @@ We will be primarily using the [Fashion-MNIST](https://arxiv.org/pdf/1708.07747.
 
 A CPU only 10 epoch run should take about 15 minutes on a 4 year old laptop. Much of your time might be executing training runs in the background on your computer. This means you need to plan for up to 24 hours of total training time! Making a plan for this assignment, installing the software ahead of time, setting a schedule, and submitting on time is 100% your responsibility.
 
-## Installation
+## PyTorch and Package Installation
 
 Install [miniconda](https://conda.io/docs/user-guide/install/index.html), a python package manager.
 
@@ -62,10 +84,24 @@ conda list
 pip install --upgrade pytest flake8 tensorboardX onnx
 ```
 
+Make sure everything is installed correctly
+```
+
+python -c "import torch, torchvision, tensorboardX, tqdm; print('success')"
+
+```
+
+You should see the following if your setup is done correctly:
+
+```
+> python -c "import torch, torchvision, tensorboardX, tqdm; print('success')"
+success
+```
+
 Fork and then clone the repository on GitHub
 
 ```
-git clone http://path/to/repo
+git clone git@github.com:path-to-your/group-repository.git
 cd repo
 ```
 
@@ -93,39 +129,35 @@ Look at the results on tensorboard:
 tensorboard --port 8888 --logdir ../data
 ```
 
-Open your web browser and go to [http://localhost:8888](http://localhost:8888).
+While TensorBoard is running, open your web browser and go to [http://localhost:8888](http://localhost:8888).
 
 
 Run all your experiments:
 
 ```
-sh 1_fashion_mnist_experiments.sh
+sh 01_fashion_mnist_experiments.sh
 ```
 
 
 ## Questions
 
-For each of the following questions (#1-15) analyze **What, How and, Why**:
+For each of the following questions (#1-9):
 
-  - What does each change do mathematically?
-  - What does each change do algorithmically?
-  - How and why does the loss, accuracy, validation loss, and validation accuracy change?
-  - How and why does the training time change? (if at all)
-  - Explain why you would want to apply such a change to your model.
-  - After each question return to the parameters to their original settings unless the next question says otherwise.
-  - Run on Fashion-MNIST unless the instructions say otherwise.
-  - Include a screenshot of your tensorboard scalars for each situation and compare the effect of the hyperparameter changes.
-      - The labels and pictures must be very clear.
-      - Don't forget you can move the folders from your `../data` directory and back into it.
+  - [ ] Run on Fashion-MNIST unless the instructions say otherwise.
+  - [ ] Include a screenshot of your tensorboard scalars for each situation.
+  - [ ] Give a very brief explanation of effect of this hyperparameter change.
+  - [ ] The labels and screenshots must be very clear, the `--name extra_description` parameter can help.
+  - [ ] Don't forget you can move the folders from your `../data` directory and back into it.
+  - [ ] After each question, return to the parameters to their original settings unless the next question says otherwise.
+  - [ ] Make sure every configuration you run with is in `p01_fashion_mnist_experiments.sh`.
 
-Extra credit if you set up hyperparameter tuning to run everything in one go.
 There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
 
 ### Varying Datasets (3 points)
 
 1. Compare the performance of mnist and fashion-mnist
 
-### Varying Hyperparameters (33 points)
+### Varying Hyperparameters (3 points each)
 
 2. Train for twice as many epochs for both mnist and fashion_mnist.
     - [Fashion 10 epochs, MNIST 10 epochs, Fashion 20 epochs, MNIST 20 epochs]
@@ -146,9 +178,19 @@ There is also no need to re-run the default setting over and over again, just re
 7. Change the number of output channels in each convolution and the first Linear layer.
     - [0.5x, 1x, 2x]
     - Note: The input values of each layer will need to match the previous layer.
+    - You'll need to implement `P1Q7HalfChannelsNet` and `P1Q7DoubleChannelsNet`.
+
+8. Implement SGD in the class `P1Q8SGD`.
+    - Please write your own code
 
 
-# Programming Assignment 2 (work in progress) (100 points total)
+# Programming Assignment 2 (work in progress) (46 points total)
+
+Here we continue directly from your work in Assignment 1.
+
+## Questions
+
+### Varying Hyperparameters (3 points each)
 
 8. Add a Batch Normalization Layer after the first convolution.
 
@@ -164,16 +206,22 @@ There is also no need to re-run the default setting over and over again, just re
     - In addition to the standard questions, what did you choose and why?
 
 
-### Become the ultimate Fashion-MNIST model (50 points)
+### Become the ultimate Fashion-MNIST model (25 points)
 
 13. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
     - A minimum of 92% validation accuracy is required for full credit.
     - Make sure to save your best model checkpoints or you'll be out of luck.
     - Feel free to use outside literature
     - Please write your own code
+    - Also answer the following questions
+        1. What does each change do mathematically?
+        2. What does each change do algorithmically?
+        3. How and why does the loss, accuracy, validation loss, and validation accuracy change?
+        4. How and why does the training time change? (if at all)
+        5. Explain why you would want to apply such a change to your model.
     - The best performer in the class will get a prize!
 
-### Fine tuning between datasets (14 points)
+### Fine tuning between datasets (3 points each)
 
 14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
 

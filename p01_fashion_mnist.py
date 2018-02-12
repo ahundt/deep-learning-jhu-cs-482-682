@@ -184,7 +184,7 @@ def chooseModel(model_name='default', cuda=True):
     return model
 
 
-class P1SGD(optim.Optimizer):
+class P1Q8SGD(optim.Optimizer):
     r"""Implements stochastic gradient descent (optionally with momentum).
 
     Nesterov momentum is based on the formula from
@@ -236,10 +236,10 @@ class P1SGD(optim.Optimizer):
                         weight_decay=weight_decay, nesterov=nesterov)
         if nesterov and (momentum <= 0 or dampening != 0):
             raise ValueError("Nesterov momentum requires a momentum and zero dampening")
-        super(P1SGD, self).__init__(params, defaults)
+        super(P1Q8SGD, self).__init__(params, defaults)
 
     def __setstate__(self, state):
-        super(P1SGD, self).__setstate__(state)
+        super(P1Q8SGD, self).__setstate__(state)
         for group in self.param_groups:
             group.setdefault('nesterov', False)
 

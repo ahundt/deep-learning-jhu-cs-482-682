@@ -10,7 +10,7 @@ from torch.optim import SGD
 from torch.autograd import Variable
 from torch import sparse
 from test_common import TestCase, run_tests
-from p01_fashion_mnist import P1SGD
+from p01_fashion_mnist import P1Q8SGD
 from p01_fashion_mnist import Net
 from p01_fashion_mnist import P1Q7HalfChannelsNet
 from p01_fashion_mnist import P1Q7DoubleChannelsNet
@@ -243,25 +243,25 @@ class TestOptim(TestCase):
         print('sgd')
         try:
             self._test_rosenbrock(
-                lambda params: P1SGD(params, lr=1e-3),
+                lambda params: P1Q8SGD(params, lr=1e-3),
                 wrap_old_fn(old_optim.sgd, learningRate=1e-3)
             )
             self._test_rosenbrock(
-                lambda params: P1SGD(params, lr=1e-3, momentum=0.9,
+                lambda params: P1Q8SGD(params, lr=1e-3, momentum=0.9,
                                      dampening=0, weight_decay=1e-4),
                 wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
                             dampening=0, weightDecay=1e-4)
             )
             self._test_basic_cases(
-                lambda weight, bias: P1SGD([weight, bias], lr=1e-3)
+                lambda weight, bias: P1Q8SGD([weight, bias], lr=1e-3)
             )
             self._test_basic_cases(
-                lambda weight, bias: P1SGD(
+                lambda weight, bias: P1Q8SGD(
                     self._build_params_dict(weight, bias, lr=1e-2),
                     lr=1e-3)
             )
             self._test_basic_cases(
-                lambda weight, bias: P1SGD(
+                lambda weight, bias: P1Q8SGD(
                     self._build_params_dict_single(weight, bias, lr=1e-2),
                     lr=1e-3)
             )
