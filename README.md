@@ -146,7 +146,7 @@ brew install protobuf
 Train the provided model on mnist
 
 ```
-python p01_mnist_fashion.py --dataset fashion_mnist --epochs 10
+python p01_mnist_fashion.py --dataset mnist --epochs 10
 ```
 
 Train the default model on Fashion-MNIST
