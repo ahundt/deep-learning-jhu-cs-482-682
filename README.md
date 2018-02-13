@@ -155,7 +155,7 @@ While TensorBoard is running, open your web browser and go to [http://localhost:
 Run all your experiments:
 
 ```
-sh 01_fashion_mnist_experiments.sh
+sh p01_fashion_mnist_experiments.sh
 ```
 
 
