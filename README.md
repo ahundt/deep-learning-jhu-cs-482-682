@@ -163,13 +163,13 @@ sh p01_fashion_mnist_experiments.sh
 
 For each of the following questions (#1-9):
 
-  - [ ] Run on Fashion-MNIST unless the instructions say otherwise.
-  - [ ] Include a screenshot of your tensorboard scalars for each situation.
-  - [ ] Give a very brief explanation of effect of this hyperparameter change.
-  - [ ] The labels and screenshots must be very clear, the `--name extra_description` parameter can help.
-  - [ ] Don't forget you can move the folders from your `../data` directory and back into it.
-  - [ ] After each question, return to the parameters to their original settings unless the next question says otherwise.
-  - [ ] Make sure every configuration you run with is in `p01_fashion_mnist_experiments.sh`.
+  - Run on Fashion-MNIST unless the instructions say otherwise.
+  - Include a screenshot of your tensorboard scalars for each situation.
+  - Give a very brief explanation of effect of this hyperparameter change.
+  - The labels and screenshots must be very clear, the `--name extra_description` parameter can h
+  - Don't forget you can move the folders from your `../data` directory and back into it.
+  - After each question, return to the parameters to their original settings unless the next qion says otherwise.
+  - Make sure every configuration you run with is in `p01_fashion_mnist_experiments.sh`.
 
 There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
 
