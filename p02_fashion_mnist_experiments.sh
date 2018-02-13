@@ -1,3 +1,8 @@
+
+set -e
+set -u
+set -x
+
 # Question 1 Default settings
 python p02_fashion_mnist.py --dataset mnist --epochs 10 --name q1_default
 python p02_fashion_mnist.py --dataset fashion_mnist --epochs 10 --name q1_default  --data_dir ../data/q1
