@@ -764,9 +764,12 @@ class CSVLogger(Callback):
         separator: string used to separate elements in the csv file.
         append: True: append if file exists (useful for continuing
             training). False: overwrite existing file,
+        output_on_train_end: An additional output file to write to
+            write to when training ends. An example is
+            CSVLogger(filename='./mylog.csv', output_on_train_end=os.sys.stdout)
     """
 
-    def __init__(self, filename, separator=',', append=False):
+    def __init__(self, filename, separator=',', append=False, output_on_train_end=None):
         self.sep = separator
         self.filename = filename
         self.append = append
@@ -774,6 +777,7 @@ class CSVLogger(Callback):
         self.keys = None
         self.append_header = True
         self.file_flags = 'b' if six.PY2 and os.name == 'nt' else ''
+        self.output_on_train_end = output_on_train_end
         super(CSVLogger, self).__init__()
 
     def on_train_begin(self, logs=None):
@@ -800,10 +804,9 @@ class CSVLogger(Callback):
         if self.keys is None:
             self.keys = sorted(logs.keys())
 
-        # commenting because in this setting self.model is not defined
-        # if self.model.stop_training:
-        #     # We set NA so that csv parsers do not fail for this last epoch.
-        #     logs = dict([(k, logs[k]) if k in logs else (k, 'NA') for k in self.keys])
+        if self.model is not None and getattr(self.model, 'stop_training', False):
+            # We set NA so that csv parsers do not fail for this last epoch.
+            logs = dict([(k, logs[k]) if k in logs else (k, 'NA') for k in self.keys])
 
         if not self.writer:
             class CustomDialect(csv.excel):
@@ -821,6 +824,9 @@ class CSVLogger(Callback):
 
     def on_train_end(self, logs=None):
         self.csv_file.close()
+        if os.path.exists(self.filename):
+            with open(self.filename, 'r' + self.file_flags) as f:
+                print(f.read(), file=self.output_on_train_end)
         self.writer = None
 
 

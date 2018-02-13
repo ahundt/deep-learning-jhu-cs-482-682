@@ -51,6 +51,8 @@ parser.add_argument('--name', type=str, default='', metavar='N',
 parser.add_argument('--model', type=str, default='default', metavar='M',
                     help="""Options are default, P1Q7HalfChannelsNet, P1Q7DefaultChannelsNet,
                             P1Q7DoubleChannelsNet.""")
+parser.add_argument('--print_log', action='store_true', default=False,
+                    help='prints the csv log when training is complete')
 
 required = object()
 
@@ -104,10 +106,16 @@ def prepareDatasetAndLogging(args):
                                    'loss': np.array([]),
                                    'val_acc': np.array([]),
                                    'val_loss': np.array([])}}
+    if args.print_log:
+        output_on_train_end = os.sys.stdout
+    else:
+        output_on_train_end = None
+
     callbacklist = callbacks.CallbackList(
         [callbacks.BaseLogger(),
          callbacks.TQDMCallback(),
-         callbacks.CSVLogger(filename=training_run_dir + training_run_name + '.csv')])
+         callbacks.CSVLogger(filename=training_run_dir + training_run_name + '.csv',
+                             output_on_train_end=output_on_train_end)])
     callbacklist.set_params(callback_params)
 
     tensorboard_writer = SummaryWriter(log_dir=training_run_dir, comment=args.dataset + '_embedding_training')
