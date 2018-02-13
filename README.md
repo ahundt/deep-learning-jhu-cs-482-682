@@ -59,7 +59,7 @@ We will be primarily using the [Fashion-MNIST](https://arxiv.org/pdf/1708.07747.
 
 ![Fashion-MNIST](https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/doc/img/fashion-mnist-sprite.png)
 
-A CPU only 10 epoch run should take about 15 minutes on a 4 year old laptop. Much of your time might be executing training runs in the background on your computer. This means you need to plan for up to 24 hours of total training time! Making a plan for this assignment, installing the software ahead of time, setting a schedule, and submitting on time is 100% your responsibility.
+A CPU only 10 epoch run should take about 5 minutes on a 4 year old laptop. Much of your time might be executing training runs in the background on your computer. This means you need to plan for the total training time! Making a plan for this assignment, installing the software ahead of time, setting a schedule, and submitting on time is 100% your responsibility.
 
 ## PyTorch and Package Installation
 
