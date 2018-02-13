@@ -121,6 +121,19 @@ Tensorboard should not require tensorflow, but if you run into an error and just
 conda install -c anaconda tensorflow tensorflow-tensorboard
 ```
 
+Can't run tensorboard because the command is not found? Make sure it is on your PATH.
+```
+ls ~/anaconda3/bin
+
+# Is tensorboard there?
+# If so, add it to your path.
+
+export PATH=~/anaconda3/bin:$PATH
+
+# Also consider adding the above line to your ~/.bashrc
+```
+
+
 If you are on mac and you encounter protobuf errors, make sure you have [homebrew](https://brew.sh) and run:
 
 ```
