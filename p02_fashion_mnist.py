@@ -50,10 +50,8 @@ parser.add_argument('--name', type=str, default='', metavar='N',
                             affects the directory so use underscores and not spaces.""")
 parser.add_argument('--model', type=str, default='default', metavar='M',
                     help="""Options are default, p1q8_batchnorm, p1q9_dropout, p1q10_dropout_batchnorm,
-                            p1q11_extra_conv, p1q12_remove_layer, p1q13_ultimate.""")
-parser.add_argument('--test', type=str, default='', metavar='T',
-                    help="""Run a unit test to make sure all models can be created,
-                            options are the empty string, no test runs, or 'models'.""")
+                            p1q11_extra_conv, p1q12_remove_layer, p1q14_ultimate.""")
+                    help='prints the csv log when training is complete')
 
 required = object()
 
@@ -107,10 +105,16 @@ def prepareDatasetAndLogging(args):
                                    'loss': np.array([]),
                                    'val_acc': np.array([]),
                                    'val_loss': np.array([])}}
+    if args.print_log:
+        output_on_train_end = os.sys.stdout
+    else:
+        output_on_train_end = None
+
     callbacklist = callbacks.CallbackList(
         [callbacks.BaseLogger(),
          callbacks.TQDMCallback(),
-         callbacks.CSVLogger(filename=training_run_dir + training_run_name + '.csv')])
+         callbacks.CSVLogger(filename=training_run_dir + training_run_name + '.csv',
+                             output_on_train_end=output_on_train_end)])
     callbacklist.set_params(callback_params)
 
     tensorboard_writer = SummaryWriter(log_dir=training_run_dir, comment=args.dataset + '_embedding_training')
@@ -138,6 +142,8 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(50, 10)
 
     def forward(self, x):
+        # F is just a functional wrapper for modules from the nn package
+        # see http://pytorch.org/docs/_modules/torch/nn/functional.html
         x = F.relu(F.max_pool2d(self.conv1(x), 2))
         x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
         x = x.view(-1, 320)
@@ -147,10 +153,10 @@ class Net(nn.Module):
         return F.log_softmax(x, dim=1)
 
 
-class P2Q13UltimateNet(nn.Module):
+class P2Q14UltimateNet(nn.Module):
 
     def __init__(self):
-        super(P2Q13UltimateNet, self).__init__()
+        super(P2Q14UltimateNet, self).__init__()
         # TODO Implement me
         raise NotImplementedError
 
@@ -164,8 +170,8 @@ def chooseModel(model_name='default', cuda=True):
     print(model_name)
     if model_name == 'default':
         model = Net()
-    elif model_name == 'q13_ultimate':
-        model = P2Q13UltimateNet()
+    elif model_name == 'q14_ultimate':
+        model = P2Q14UltimateNet()
     else:
         raise ValueError('Unknown model type: ' + model_name)
 
