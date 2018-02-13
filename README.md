@@ -69,7 +69,7 @@ Install [miniconda](https://conda.io/docs/user-guide/install/index.html), a pyth
 Install [pytorch](http://pytorch.org/):
 
 ```
-conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tensorflow-tensorboard tqdm pytorch-cpu torchvision -c pytorch
+conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tqdm pytorch-cpu torchvision -c pytorch
 ```
 
 If you have a GPU you'd like to use installation would be different for every machine so, unfortunately, we can only provide support for CPU considering we have such a large class.
@@ -77,14 +77,15 @@ If you have a GPU you'd like to use installation would be different for every ma
 
 Install the visualization tools:
 
-```
+```bash
 source activate dl-jhu-env
-which python
+which python # note that your python has changed
 conda list
-pip install --upgrade pytest flake8 tensorboardX onnx
+pip install --upgrade pytest flake8 tensorflow-tensorboard tensorboardX onnx
 ```
 
 Make sure everything is installed correctly
+
 ```
 
 python -c "import torch, torchvision, tensorboardX, tqdm; print('success')"
@@ -171,6 +172,12 @@ Run all your experiments:
 sh p01_fashion_mnist_experiments.sh
 ```
 
+Run the unit tests:
+
+```
+py.test p01_fashion_mnist_tests.py
+```
+
 
 ## Questions
 
@@ -225,23 +232,23 @@ Here we continue directly from your work in Assignment 1.
 
 ### Varying Hyperparameters (3 points each)
 
-8. Add a Batch Normalization Layer after the first convolution.
+9. Add a Batch Normalization Layer after the first convolution.
 
-9. Add a Dropout layer immediately after the Batch Normalization from the previous question.
+10. Add a Dropout layer immediately after the Batch Normalization from the previous question.
 
-10. Move the Batch Normalizaton layer just below the Dropout layer from the previous question.
+11. Move the Batch Normalizaton layer just below the Dropout layer from the previous question.
     - Compare 9 with 10 and explain what happened.
     - You may want to do a quick search of the current literature for this one.
 
-11. Add one extra Conv2D layer
+12. Add one extra Conv2D layer
 
-12. Remove a layer of your choice
+13. Remove a layer of your choice
     - In addition to the standard questions, what did you choose and why?
 
 
 ### Become the ultimate Fashion-MNIST model (25 points)
 
-13. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
+14. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
     - A minimum of 92% validation accuracy is required for full credit.
     - Make sure to save your best model checkpoints or you'll be out of luck.
     - Feel free to use outside literature
@@ -256,8 +263,8 @@ Here we continue directly from your work in Assignment 1.
 
 ### Fine tuning between datasets (3 points each)
 
-14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
+15. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
 
-15. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
+16. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
      - Compare this to your original MNIST training run and the previous question
 
