@@ -174,7 +174,7 @@ sh p01_fashion_mnist_experiments.sh
 
 ## Questions
 
-For each of the following questions (#1-9):
+For each of the following questions (#1-8):
 
   - Run on Fashion-MNIST unless the instructions say otherwise.
   - Include a screenshot of your tensorboard scalars for each situation.
@@ -205,7 +205,7 @@ There is also no need to re-run the default setting over and over again, just re
 5. Set the dropout layer to a dropout rate of
     - [0, 0.25, 0.5, 0.9, 1]
 
-6. Change the batch size:
+6. Change the batch size by a factor of:
      - [1/8x, 1x, 8x]
 
 7. Change the number of output channels in each convolution and the first Linear layer.
