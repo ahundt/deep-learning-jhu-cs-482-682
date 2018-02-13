@@ -107,20 +107,40 @@ cd repo
 
 Make sure the folder `/path/to/repo/../data` aka `/path/to/data` is available, or set `--data-dir` when running commands below.
 
+### Troubleshooting the Installation
+
+If you have trouble with tqdm, try the following install command:
+
+```
+conda install -c conda-forge tqdm
+```
+
+Tensorboard should not require tensorflow, but if you run into an error and just want to move on try the following:
+
+```
+conda install -c anaconda tensorflow tensorflow-tensorboard
+```
+
+If you are on mac and you encounter protobuf errors, make sure you have [homebrew](https://brew.sh) and run:
+
+```
+brew install protobuf
+```
+
 ### Steps to run
 
 
 Train the provided model on mnist
 
 ```
-python2 a1_mnist_fashion.py --dataset fashion_mnist --epochs 10
+python p01_mnist_fashion.py --dataset fashion_mnist --epochs 10
 ```
 
 Train the default model on Fashion-MNIST
 
 
 ```
-python2 a1_mnist_fashion.py --dataset fashion_mnist --epochs 10
+python p01_mnist_fashion.py --dataset fashion_mnist --epochs 10
 ```
 
 Look at the results on tensorboard:
