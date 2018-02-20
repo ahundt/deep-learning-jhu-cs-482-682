@@ -49,8 +49,11 @@ parser.add_argument('--name', type=str, default='', metavar='N',
                     help="""A name for this training run, this
                             affects the directory so use underscores and not spaces.""")
 parser.add_argument('--model', type=str, default='default', metavar='M',
-                    help="""Options are default, p1q8_batchnorm, p1q9_dropout, p1q10_dropout_batchnorm,
-                            p1q11_extra_conv, p1q12_remove_layer, p1q14_ultimate.""")
+                    help="""Options are default, P2Q7DefaultChannelsNet,
+                    P2Q7HalfChannelsNet, P2Q7DoubleChannelsNet,
+                    P2Q8BatchNormNet, P2Q9DropoutNet, P2Q10DropoutBatchnormNet,
+                    P2Q11ExtraConvNet, P2Q12RemoveLayerNet, and P2Q13UltimateNet.""")
+parser.add_argument('--print_log', action='store_true', default=False,
                     help='prints the csv log when training is complete')
 
 required = object()
@@ -153,10 +156,86 @@ class Net(nn.Module):
         return F.log_softmax(x, dim=1)
 
 
-class P2Q14UltimateNet(nn.Module):
-
+class P2Q7HalfChannelsNet(nn.Module):
     def __init__(self):
-        super(P2Q14UltimateNet, self).__init__()
+        super(P2Q7HalfChannelsNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q7DoubleChannelsNet(nn.Module):
+    def __init__(self):
+        super(P2Q7DoubleChannelsNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q8BatchNormNet(nn.Module):
+    def __init__(self):
+        super(P2Q8BatchNormNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q9DropoutNet(nn.Module):
+    def __init__(self):
+        super(P2Q9DropoutNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q10DropoutBatchnormNet(nn.Module):
+    def __init__(self):
+        super(P2Q10DropoutBatchnormNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q11ExtraConvNet(nn.Module):
+    def __init__(self):
+        super(P2Q11ExtraConvNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q12RemoveLayerNet(nn.Module):
+    def __init__(self):
+        super(P2Q12RemoveLayerNet, self).__init__()
+        # TODO Implement me
+        raise NotImplementedError
+
+    def forward(self, x):
+        # TODO Implement me
+        raise NotImplementedError
+
+
+class P2Q13UltimateNet(nn.Module):
+    def __init__(self):
+        super(P2Q13UltimateNet, self).__init__()
         # TODO Implement me
         raise NotImplementedError
 
@@ -167,11 +246,10 @@ class P2Q14UltimateNet(nn.Module):
 
 def chooseModel(model_name='default', cuda=True):
     # TODO add all the other models here if their parameter is specified
-    print(model_name)
-    if model_name == 'default':
+    if model_name == 'default' or model_name == 'P2Q7DefaultChannelsNet':
         model = Net()
-    elif model_name == 'q14_ultimate':
-        model = P2Q14UltimateNet()
+    elif model_name in globals():
+        model = globals()[model_name]
     else:
         raise ValueError('Unknown model type: ' + model_name)
 
@@ -183,8 +261,6 @@ def chooseModel(model_name='default', cuda=True):
 def chooseOptimizer(model, optimizer='sgd'):
     if optimizer == 'sgd':
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
-    elif optimizer == 'p1sgd':
-        optimizer = P1SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     elif optimizer == 'adam':
         optimizer = optim.Adam(model.parameters())
     elif optimizer == 'rmsprop':

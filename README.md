@@ -51,7 +51,7 @@ python p01_fashion_mnist.py --dataset fashion_mnist --lr 0.1
 
 Be sure that your unit tests are correct and passing in the final submission or it could affect your grade!
 
-# Programming Assignment 1 (24 points total)
+# Programming Assignment 2 (100 points total)
 
 This assignment should be done in groups of 3. A minimum of 4 answers should be submitted every 7 days starting on the release date of the assignment. This assignment will take several days of CPU time if you don't have a GPU, and that's the reason for the staggered deadlines.
 
@@ -218,37 +218,25 @@ There is also no need to re-run the default setting over and over again, just re
 7. Change the number of output channels in each convolution and the first Linear layer.
     - [0.5x, 1x, 2x]
     - Note: The input values of each layer will need to match the previous layer.
-    - You'll need to implement `P1Q7HalfChannelsNet` and `P1Q7DoubleChannelsNet`.
+    - You'll need to implement `P2Q7HalfChannelsNet` and `P2Q7DoubleChannelsNet`.
 
-8. Implement SGD in the class `P1Q8SGD`.
-    - Please write your own code
+8. Add a Batch Normalization Layer after the first convolution.
 
+9. Add a Dropout layer immediately after the Batch Normalization from the previous question.
 
-# Programming Assignment 2 (work in progress) (46 points total)
-
-Here we continue directly from your work in Assignment 1.
-
-## Questions
-
-### Varying Hyperparameters (3 points each)
-
-9. Add a Batch Normalization Layer after the first convolution.
-
-10. Add a Dropout layer immediately after the Batch Normalization from the previous question.
-
-11. Move the Batch Normalizaton layer just below the Dropout layer from the previous question.
+10. Move the Batch Normalizaton layer just below the Dropout layer from the previous question.
     - Compare 9 with 10 and explain what happened.
     - You may want to do a quick search of the current literature for this one.
 
-12. Add one extra Conv2D layer
+11. Add one extra Conv2D layer
 
-13. Remove a layer of your choice
+12. Remove a layer of your choice
     - In addition to the standard questions, what did you choose and why?
 
 
 ### Become the ultimate Fashion-MNIST model (25 points)
 
-14. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
+13. Create the best model you can on Fashion-MNIST based on your experience from the previous questions.
     - A minimum of 92% validation accuracy is required for full credit.
     - Make sure to save your best model checkpoints or you'll be out of luck.
     - Feel free to use outside literature
@@ -263,8 +251,8 @@ Here we continue directly from your work in Assignment 1.
 
 ### Fine tuning between datasets (3 points each)
 
-15. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
+14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
 
-16. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
+15. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
      - Compare this to your original MNIST training run and the previous question
 
