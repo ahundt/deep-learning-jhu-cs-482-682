@@ -253,6 +253,6 @@ There is also no need to re-run the default setting over and over again, just re
 
 14. Evaluate your "ultimate Fashion-MNIST model" by loading the trained weights and running on MNIST without changing the Fashion-MNIST weights at all.
 
-15. Reduce your SGD learning rate by 100x, and train MNIST on your ultimate Fashion-MNIST model
+15. Reduce your SGD learning rate by 20x, and train MNIST on your ultimate Fashion-MNIST model
      - Compare this to your original MNIST training run and the previous question
 
