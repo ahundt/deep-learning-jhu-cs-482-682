@@ -236,34 +236,6 @@ class TestOptim(TestCase):
     def _build_params_dict_single(self, weight, bias, **kwargs):
         return [dict(params=bias, **kwargs)]
 
-    def test_sgd(self):
-        try:
-            self._test_rosenbrock(
-                lambda params: P1Q8SGD(params, lr=1e-3),
-                wrap_old_fn(old_optim.sgd, learningRate=1e-3)
-            )
-            self._test_rosenbrock(
-                lambda params: P1Q8SGD(params, lr=1e-3, momentum=0.9,
-                                     dampening=0, weight_decay=1e-4),
-                wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
-                            dampening=0, weightDecay=1e-4)
-            )
-            self._test_basic_cases(
-                lambda weight, bias: P1Q8SGD([weight, bias], lr=1e-3)
-            )
-            self._test_basic_cases(
-                lambda weight, bias: P1Q8SGD(
-                    self._build_params_dict(weight, bias, lr=1e-2),
-                    lr=1e-3)
-            )
-            self._test_basic_cases(
-                lambda weight, bias: P1Q8SGD(
-                    self._build_params_dict_single(weight, bias, lr=1e-2),
-                    lr=1e-3)
-            )
-        except NotImplementedError:
-            pass
-
 
 def check_net(model):
     model.train()
