@@ -311,7 +311,7 @@ def train(model, optimizer, train_loader, tensorboard_writer, callbacklist, epoc
         if args.log_interval != 0 and total_minibatch_count % args.log_interval == 0:
             # put all the logs in tensorboard
             for name, value in six.iteritems(batch_logs):
-                    tensorboard_writer.add_scalar(name, value, global_step=total_minibatch_count)
+                tensorboard_writer.add_scalar(name, value, global_step=total_minibatch_count)
 
             # put all the parameters in tensorboard histograms
             for name, param in model.named_parameters():
