@@ -5,14 +5,14 @@ Deep learning JHU CS 482 682 assignments
 
 ## Requirements for assignments
 
-These requirements will apply to all the assignments, but we use p01 as an example:
+These requirements will apply to all the assignments, but we use p02 as an example:
 
-- Answer all of the questions by filling out the markdown file `01_fashion_mnist_answers.md` with your answers
+- Answer all of the questions by filling out the markdown file `02_fashion_mnist_answers.md` with your answers
     - It should include the accompanying screenshots, if applicable.
-- Address all TODOs, for example in assignment 01:
-    - `p01_fashion_mnist.py`
-    - `p01_fashion_mnist_experiments.sh`
-    - `p01_fashion_mnist_answers.md`
+- Address all TODOs, for example in assignment 02:
+    - `p02_fashion_mnist.py`
+    - `p02_fashion_mnist_experiments.sh`
+    - `p02_fashion_mnist_answers.md`
 - Your code must pass the travis CI tests
     - The travis CI output is where we will evaluate your ultimate model's validation performance
     - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks  built into the travis CI tests
@@ -40,13 +40,13 @@ You may not be familiar with [GitHub](github.com), fortunately they provide many
 
 If you want to run your training scripts on travis you can simply update the appropriate line.
 ```
-python p01_fashion_mnist.py --dataset fashion_mnist
+python p02_fashion_mnist.py --dataset fashion_mnist
 ```
 
 might become
 
 ```
-python p01_fashion_mnist.py --dataset fashion_mnist --lr 0.1
+python p02_fashion_mnist.py --dataset fashion_mnist --lr 0.1
 ```
 
 Be sure that your unit tests are correct and passing in the final submission or it could affect your grade!
@@ -147,14 +147,14 @@ brew install protobuf
 Train the provided model on mnist
 
 ```
-python p01_mnist_fashion.py --dataset mnist --epochs 10
+python p02_mnist_fashion.py --dataset mnist --epochs 10
 ```
 
 Train the default model on Fashion-MNIST
 
 
 ```
-python p01_mnist_fashion.py --dataset fashion_mnist --epochs 10
+python p02_mnist_fashion.py --dataset fashion_mnist --epochs 10
 ```
 
 Look at the results on tensorboard:
@@ -169,13 +169,13 @@ While TensorBoard is running, open your web browser and go to [http://localhost:
 Run all your experiments:
 
 ```
-sh p01_fashion_mnist_experiments.sh
+sh p02_fashion_mnist_experiments.sh
 ```
 
 Run the unit tests:
 
 ```
-py.test p01_fashion_mnist_tests.py
+py.test p02_fashion_mnist_tests.py
 ```
 
 
@@ -189,7 +189,7 @@ For each of the following questions (#1-8):
   - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
   - Don't forget you can move the folders from your `../data` directory and back into it.
   - After each question, return to the parameters to their original settings unless the next qion says otherwise.
-  - Make sure every configuration you run with is in `p01_fashion_mnist_experiments.sh`.
+  - Make sure every configuration you run with is in `p02_fashion_mnist_experiments.sh`.
 
 There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
 
