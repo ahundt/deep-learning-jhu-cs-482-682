@@ -387,7 +387,7 @@ def run_experiment(args):
     callbacklist.on_train_end()
     tensorboard_writer.close()
 
-    if val_acc > 0.92 and val_acc <= 1.0:
+    if args.dataset == 'fashion_mnist' and val_acc > 0.92 and val_acc <= 1.0:
         print("Congratulations, you beat the Question 13 minimum of 92 with ({:.2f}%) validation accuracy!".format(val_acc))
 
 if __name__ == '__main__':
