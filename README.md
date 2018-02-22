@@ -74,7 +74,7 @@ export PATH=~/miniconda3/bin:$PATH
 Install [pytorch](http://pytorch.org/), you can see pytorch website for more detailed instructions:
 
 ```
-conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tqdm 
+conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tqdm
 source activate dl-jhu-env
 conda install pytorch-cpu torchvision -c pytorch
 ```
@@ -170,14 +170,14 @@ bash
 Train the provided model on mnist
 
 ```
-python p02_mnist_fashion.py --dataset mnist --epochs 10
+python p02_fashion_mnist.py --dataset mnist --epochs 10
 ```
 
 Train the default model on Fashion-MNIST
 
 
 ```
-python p02_mnist_fashion.py --dataset fashion_mnist --epochs 10
+python p02_fashion_mnist.py --dataset fashion_mnist --epochs 10
 ```
 
 Look at the results on tensorboard:
