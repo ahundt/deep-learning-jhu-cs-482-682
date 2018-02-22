@@ -147,6 +147,23 @@ If you are on mac and you encounter protobuf errors, make sure you have [homebre
 brew install protobuf
 ```
 
+#### JHU Ugrad machine specific errors
+
+If you see something like:
+```
+conda: Command not found
+```
+
+The ugrad machines seem to default to `tcsh`, so the install steps might not work. To check your shell run:
+
+```
+echo $SHELL
+```
+If the file path it prints doesn't have `bash` (an incorect shell example is `tcsh`), then simply run the following to start bash:
+```
+bash
+```
+
 ### Steps to run
 
 
