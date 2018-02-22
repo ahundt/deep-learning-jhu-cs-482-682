@@ -65,11 +65,18 @@ A CPU only 10 epoch run should take about 5 minutes on a 4 year old laptop. Much
 
 Install [miniconda](https://conda.io/docs/user-guide/install/index.html), a python package manager.
 
-
-Install [pytorch](http://pytorch.org/):
+Make sure miniconda is on your path, you may want to add the following to your `~/.bashrc` file:
 
 ```
-conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tqdm pytorch-cpu torchvision -c pytorch
+export PATH=~/miniconda3/bin:$PATH
+```
+
+Install [pytorch](http://pytorch.org/), you can see pytorch website for more detailed instructions:
+
+```
+conda create -q -n dl-jhu-env python=3.6 pip numpy chainer torchvision tqdm 
+source activate dl-jhu-env
+conda install pytorch-cpu torchvision -c pytorch
 ```
 
 If you have a GPU you'd like to use installation would be different for every machine so, unfortunately, we can only provide support for CPU considering we have such a large class.
@@ -78,7 +85,6 @@ If you have a GPU you'd like to use installation would be different for every ma
 Install the visualization tools:
 
 ```bash
-source activate dl-jhu-env
 which python # note that your python has changed
 conda list
 pip install --upgrade pytest flake8 tensorflow-tensorboard tensorboardX onnx
