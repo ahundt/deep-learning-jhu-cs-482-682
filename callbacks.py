@@ -13,6 +13,7 @@ from __future__ import print_function
 import os
 import csv
 import six
+from sys import stderr
 
 import numpy as np
 import time
@@ -826,6 +827,7 @@ class CSVLogger(Callback):
         self.csv_file.close()
         if os.path.exists(self.filename):
             with open(self.filename, 'r' + self.file_flags) as f:
+                print('')
                 print(f.read(), file=self.output_on_train_end)
         self.writer = None
 
@@ -916,7 +918,6 @@ class LambdaCallback(Callback):
             self.on_train_end = on_train_end
         else:
             self.on_train_end = lambda logs: None
-from sys import stderr
 
 
 class TQDMCallback(Callback):
