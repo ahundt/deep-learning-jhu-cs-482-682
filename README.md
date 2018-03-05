@@ -13,6 +13,7 @@ These requirements will apply to all the assignments, but we use p02 as an examp
     - `p02_fashion_mnist.py`
     - `p02_fashion_mnist_experiments.sh`
     - `p02_fashion_mnist_answers.md`
+    - `p02_fashion_mnist_tests.md`
 - Your code must pass the travis CI tests
     - The travis CI output is where we will evaluate your ultimate model's validation performance
     - Your code must pass [pep8](https://www.python.org/dev/peps/pep-0008/) style checks  built into the travis CI tests
@@ -210,7 +211,7 @@ For each of the following questions (#1-8):
   - Include a screenshot of your tensorboard scalars for each situation.
   - Give a very brief explanation of effect of this hyperparameter change
       - This requires that you understand and be able to articulate the difference between the various metrics and losses, as well as the conclusions you can reach based on them.
-  - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
+  - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
   - Don't forget you can move the folders from your `../data` directory and back into it.
   - After each question, return to the parameters to their original settings unless the next question says otherwise.
   - Make sure every configuration you run with is in `p02_fashion_mnist_experiments.sh`.
