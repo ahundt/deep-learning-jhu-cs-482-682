@@ -208,8 +208,8 @@ For each of the following questions (#1-8):
 
   - Run on Fashion-MNIST unless the instructions say otherwise.
   - Include a screenshot of your tensorboard scalars for each situation.
-  - Give a very brief explanation of effect of this hyperparameter change.
-      - This requires that you understand and be able to articulate the difference between the various metrics and losses, as well as the conclusions you can reach based on them.
+  - Give a very brief explanation of effect of this hyperparameter change
+      - This requires that you understand and be able to articulate the difference between the various metrics and losses, as well as the conclusions you can reach based on them.
   - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
   - Don't forget you can move the folders from your `../data` directory and back into it.
   - After each question, return to the parameters to their original settings unless the next question says otherwise.
