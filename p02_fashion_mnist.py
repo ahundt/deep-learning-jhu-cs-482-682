@@ -248,7 +248,7 @@ def chooseModel(model_name='default', cuda=True):
     if model_name == 'default' or model_name == 'P2Q7DefaultChannelsNet':
         model = Net()
     elif model_name in globals():
-        model = globals()[model_name]
+        model = globals()[model_name]()
     else:
         raise ValueError('Unknown model type: ' + model_name)
 
