@@ -214,7 +214,7 @@ For each of the following questions (#1-8):
   - After each question, return to the parameters to their original settings unless the next qion says otherwise.
   - Make sure every configuration you run with is in `p02_fashion_mnist_experiments.sh`.
 
-There is also no need to re-run the default setting over and over again, just re-use a single default run where it is reasonable.
+There is also no need to re-run the default Net model setting over and over again, just re-use a single default run where it is reasonable.
 
 ### Varying Datasets (3 points)
 
@@ -251,9 +251,9 @@ There is also no need to re-run the default setting over and over again, just re
     - Compare 9 with 10 and explain what happened.
     - You may want to do a quick search of the current literature for this one.
 
-11. Add one extra Conv2D layer
+11. Add one extra Conv2D layer, starting from the default Net model
 
-12. Remove a layer of your choice
+12. Remove a layer of your choice, starting from the default Net model
     - In addition to the standard questions, what did you choose and why?
 
 
