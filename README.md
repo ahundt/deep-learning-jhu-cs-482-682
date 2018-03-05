@@ -208,10 +208,11 @@ For each of the following questions (#1-8):
 
   - Run on Fashion-MNIST unless the instructions say otherwise.
   - Include a screenshot of your tensorboard scalars for each situation.
-  - Give a very brief explanation of effect of this hyperparameter change.
-  - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
+  - Give a very brief explanation of effect of this hyperparameter change
+      - This requires that you understand and be able to articulate the difference between the various metrics and losses, as well as the conclusions you can reach based on them.
+  - The labels and screenshots must be very clear, the `--name extra_description` parameter can help
   - Don't forget you can move the folders from your `../data` directory and back into it.
-  - After each question, return to the parameters to their original settings unless the next qion says otherwise.
+  - After each question, return to the parameters to their original settings unless the next question says otherwise.
   - Make sure every configuration you run with is in `p02_fashion_mnist_experiments.sh`.
 
 There is also no need to re-run the default Net model setting over and over again, just re-use a single default run where it is reasonable.
