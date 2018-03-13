@@ -134,6 +134,27 @@ def prepareDatasetAndLogging(args):
 
 # Define the neural network classes
 
+# Define the neural network classes
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        # self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
+        self.conv2 = nn.Conv2d(1, 4, kernel_size=10)
+        # self.fc1 = nn.Linear(320, 50)
+        # self.fc2 = nn.Linear(50, 10)
+        self.fc1 = nn.Linear(64, 10)
+
+    def forward(self, x):
+        # F is just a functional wrapper for modules from the nn package
+        # see http://pytorch.org/docs/_modules/torch/nn/functional.html
+        # x = F.relu(F.max_pool2d(self.conv1(x), 2))
+        # x = F.relu(F.max_pool2d(self.conv2(x), 2))
+        x = F.relu(F.max_pool2d(self.conv2(x), 4))
+        x = x.view(-1, 64)
+        # x = F.relu(self.fc1(x))
+        x = F.dropout(x, p=0.75, training=self.training)
+        x = self.fc1(x)
+        return F.log_softmax(x, dim=1)
 
 class Net(nn.Module):
     def __init__(self):
