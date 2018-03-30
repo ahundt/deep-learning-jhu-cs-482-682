@@ -34,4 +34,5 @@ before_script:
   # - py.test --pep8 -m pep8 -n0;
 script:
   - py.test p02_fashion_mnist_tests.py
+  - py.test p03_layers_tests.py
 
