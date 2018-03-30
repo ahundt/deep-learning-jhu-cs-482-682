@@ -244,9 +244,11 @@ class P3Dropout(Module):
 
     def __init__(self, p=0.5, inplace=False):
         super(Dropout, self).__init__()
+        # TODO Implement me
         raise NotImplementedError
 
     def forward(self, input):
+        # TODO Implement me
         raise NotImplementedError
 
     def __repr__(self):
@@ -285,6 +287,7 @@ class P3Dropout2d(Module):
 
     def __init__(self, p=0.5, inplace=False):
         super(Dropout2d, self).__init__()
+        # TODO Implement me
         raise NotImplementedError
 
     def forward(self, input):
@@ -343,6 +346,16 @@ class P3Linear(Module):
             self.bias.data.uniform_(-stdv, stdv)
 
     def forward(self, input):
+        # TODO Implement me
+        raise NotImplementedError
+
+    def backward(self, grad_output):
+        """
+        In the backward pass we receive a Tensor containing the gradient of the loss
+        with respect to the output, and we need to compute the gradient of the loss
+        with respect to the input.
+        """
+        # TODO manually implement a backwards pass
         raise NotImplementedError
 
     def __repr__(self):
@@ -354,8 +367,7 @@ class P3Linear(Module):
 
 def p3relu(input, inplace=False):
     r"""relu(input, threshold, value, inplace=False) -> Tensor
-    Applies the rectified linear unit function element-wise. See
-    :class:`~torch.nn.ReLU` for more details.
+    Applies the rectified linear unit function element-wise.
     """
     raise NotImplementedError
 
@@ -378,6 +390,10 @@ class P3ReLU(Threshold):
 
     def __init__(self, inplace=False):
         super(ReLU, self).__init__(0, 0, inplace)
+
+    def forward(self, input):
+        # TODO Implement me
+        raise NotImplementedError
 
     def __repr__(self):
         inplace_str = 'inplace' if self.inplace else ''
@@ -408,6 +424,15 @@ class P3ELU(Module):
         self.inplace = inplace
 
     def forward(self, input):
+        raise NotImplementedError
+
+    def backward(self, grad_output):
+        """
+        In the backward pass we receive a Tensor containing the gradient of the loss
+        with respect to the output, and we need to compute the gradient of the loss
+        with respect to the input.
+        """
+        # TODO manually implement a backwards pass
         raise NotImplementedError
 
     def __repr__(self):
@@ -465,6 +490,7 @@ class P3BCELoss(_WeightedLoss):
 
     def forward(self, input, target):
         _assert_no_grad(target)
+        # TODO implement me
         raise NotImplementedError
 
 
