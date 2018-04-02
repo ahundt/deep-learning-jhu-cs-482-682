@@ -284,19 +284,29 @@ There is also no need to re-run the default Net model setting over and over agai
 
 # P03 Implementing Layers
 
-Implement each of the following layers, some in functional format and others as classes. For each layer that defines `backward()` you must manually implement the backpropagation step. For all others you may use the autograd function supplied in pytorch. For each class you must also implement a unit test that validates the correctness of your work, which must be run in travis. The unit test should take no longer than 10 seconds to run.
+Implement each of the following layers, some in functional format and others as classes. What to do:
 
-1. P3SGD (10 points)
-2. P3Dropout (10 points)
-3. P3Dropout2d (10 points)
-4. P3Linear (10 points)
+ - Implement every class and function with `raise NotImplementedError`.
+ - Backpropagation
+     - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
+     - For all others you may use the autograd functionality supplied in pytorch.
+ - For each class and function you must also implement a unit test that validates the correctness of your work
+     - Each unit test must be run in travis, and travis must pass.
+     - See p01 and the pytorch source code for examples of how to write a proper unit test.
+     - All unit tests should take no longer than 30 seconds to run in total.
+     - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
+
+1. P3SGD class (10 points)
+2. P3Dropout class (10 points)
+3. P3Dropout2d class (10 points)
+4. P3Linear class plus a backward pass (10 points)
 5. p3relu function (10 points)
 6. P3ReLU class (10 points)
-7. P3ELU (10 points)
+7. P3ELU class plus a backward pass (10 points)
 8. P3BCELoss (10 points)
-9. P3BCEWithLogitsLoss (10 points)
-10. Create a Net (20 points)
+9. Create a Net (20 points)
+    - You must include the chart and a description in `p03_layers_answers.md` as you did in p02.
 
-For item 10 you must also create an updated `Net` class which utilizes each of these functions, and demonstrate that you are able to get 80% accuracy on Fashion-MNIST by running the layers you implemented yourself. You must include the chart and a description in `p03_layers_answers.md` as you did in p02. For the two losses simply perform two separate training runs.
+For item 9 you must also create an updated `Net` class which utilizes each of these functions, and demonstrate that you are able to get 80% accuracy on Fashion-MNIST by running the layers you implemented yourself.
 
 5 points of each question will be devoted to the correctness of your answer and 5 points will be devoted to the quality of your unit tests that check the correctness of your answer. The remaining 10 points on item 10 will be based on what you put in `p03_layers_answers.md`.
