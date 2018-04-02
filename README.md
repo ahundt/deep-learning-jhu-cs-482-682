@@ -293,8 +293,10 @@ Implement each of the following layers, some in functional format and others as 
  - For each class and function you must also implement a unit test that validates the correctness of your work
      - Each unit test must be run in travis, and travis must pass.
      - See p01 and the pytorch source code for examples of how to write a proper unit test.
-     - All unit tests should take no longer than 30 seconds to run in total.
+     - All unit tests should take no longer than 120 seconds to run in total.
      - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
+
+## Questions
 
 1. P3SGD class (10 points)
 2. P3Dropout class (10 points)
@@ -305,8 +307,9 @@ Implement each of the following layers, some in functional format and others as 
 7. P3ELU class plus a backward pass (10 points)
 8. P3BCELoss (10 points)
 9. Create a Net (20 points)
+    - Update the `Net` class to utilize each of the classes and functions you implemented.
+    - Demonstrate that you are able to train the new Net to get 80% accuracy on Fashion-MNIST.
     - You must include the chart and a description in `p03_layers_answers.md` as you did in p02.
 
-For item 9 you must also create an updated `Net` class which utilizes each of these functions, and demonstrate that you are able to get 80% accuracy on Fashion-MNIST by running the layers you implemented yourself.
+5 points of each question will be devoted to the correctness of your answer and 5 points will be devoted to the quality with which your unit tests validate the correctness of your implementation. The remaining 10 points on item 10 will be based on what you put in `p03_layers_answers.md`.
 
-5 points of each question will be devoted to the correctness of your answer and 5 points will be devoted to the quality of your unit tests that check the correctness of your answer. The remaining 10 points on item 10 will be based on what you put in `p03_layers_answers.md`.
