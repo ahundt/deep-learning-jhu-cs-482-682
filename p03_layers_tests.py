@@ -10,7 +10,8 @@ from torch.optim import SGD
 from torch.autograd import Variable
 from torch import sparse
 from test_common import TestCase, run_tests
-import p02_fashion_mnist
+from p03_layers import P3SGD
+import p03_layers
 
 
 def rosenbrock(tensor):
@@ -253,25 +254,25 @@ def check_net(model):
 def test_sgd(self):
     try:
         self._test_rosenbrock(
-            lambda params: P1Q8SGD(params, lr=1e-3),
+            lambda params: P3SGD(params, lr=1e-3),
             wrap_old_fn(old_optim.sgd, learningRate=1e-3)
         )
         self._test_rosenbrock(
-            lambda params: P1Q8SGD(params, lr=1e-3, momentum=0.9,
+            lambda params: P3SGD(params, lr=1e-3, momentum=0.9,
                                     dampening=0, weight_decay=1e-4),
             wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
                         dampening=0, weightDecay=1e-4)
         )
         self._test_basic_cases(
-            lambda weight, bias: P1Q8SGD([weight, bias], lr=1e-3)
+            lambda weight, bias: P3SGD([weight, bias], lr=1e-3)
         )
         self._test_basic_cases(
-            lambda weight, bias: P1Q8SGD(
+            lambda weight, bias: P3SGD(
                 self._build_params_dict(weight, bias, lr=1e-2),
                 lr=1e-3)
         )
         self._test_basic_cases(
-            lambda weight, bias: P1Q8SGD(
+            lambda weight, bias: P3SGD(
                 self._build_params_dict_single(weight, bias, lr=1e-2),
                 lr=1e-3)
         )
@@ -280,27 +281,8 @@ def test_sgd(self):
 
 
 def test_nets():
-    model = p02_fashion_mnist.Net()
+    model = p03_layers.Net()
     check_net(model)
-    try:
-        model = p02_fashion_mnist.P2Q7HalfChannelsNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q7DoubleChannelsNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q8BatchNormNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q9DropoutNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q10DropoutBatchnormNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q11ExtraConvNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q12RemoveLayerNet()
-        check_net(model)
-        model = p02_fashion_mnist.P2Q13UltimateNet()
-        check_net(model)
-    except NotImplementedError:
-        pass
 
 
 if __name__ == '__main__':
