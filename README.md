@@ -286,13 +286,15 @@ There is also no need to re-run the default Net model setting over and over agai
 
 Implement each of the following layers, some in functional format and others as classes. What to do:
 
+ - You will be changing all files that begin with `p03_*`.
  - Implement every class and function with `raise NotImplementedError`.
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
- - For each class and function you must also implement a unit test that validates the correctness of your work
+ - Unit Tests
+     - For each class and function you must also implement a unit test that validates the correctness of your work.
      - Each unit test must be run in travis, and travis must pass.
-     - See p01 and the pytorch source code for examples of how to write a proper unit test.
+     - See p01 and the pytorch source code for examples of how to write a proper unit test, some initial tests of P3SGD are already there for you.
      - All unit tests should take no longer than 120 seconds to run in total.
      - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
 
@@ -311,5 +313,4 @@ Implement each of the following layers, some in functional format and others as 
     - Demonstrate that you are able to train the new Net to get 80% accuracy on Fashion-MNIST.
     - You must include the chart and a description in `p03_layers_answers.md` as you did in p02.
 
-5 points of each question will be devoted to the correctness of your answer and 5 points will be devoted to the quality with which your unit tests validate the correctness of your implementation. The remaining 10 points on item 10 will be based on what you put in `p03_layers_answers.md`.
-
+6 points of each question will be devoted to the correctness of your answer and 4 points will be devoted to the quality with which your unit tests validate the correctness of your implementation. The remaining 10 points on item 10 will be based on your results in `p03_layers_answers.md`.
