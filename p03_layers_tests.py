@@ -244,7 +244,7 @@ class TestOptim(TestCase):
             )
             self._test_rosenbrock(
                 lambda params: p03_layers.P3SGD(params, lr=1e-3, momentum=0.9,
-                                        dampening=0, weight_decay=1e-4),
+                                                dampening=0, weight_decay=1e-4),
                 wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
                             dampening=0, weightDecay=1e-4)
             )
@@ -267,8 +267,10 @@ class TestOptim(TestCase):
 
 def check_net(model):
     model.train()
-    data = torch.autograd.Variable(torch.rand(2, 1, 28, 28)) # output from network
-    target = torch.autograd.Variable((torch.rand(2) * 2).long()) # output from network
+    # output from network
+    data = torch.autograd.Variable(torch.rand(2, 1, 28, 28))
+    # output from network
+    target = torch.autograd.Variable((torch.rand(2) * 2).long())
     optimizer = SGD(model.parameters(), lr=0.1)
     optimizer.zero_grad()
     # Forward prediction step
@@ -283,8 +285,10 @@ def test_nets():
     model = p03_layers.Net()
     check_net(model)
 
+
 def test_sgd():
     return TestOptim
+
 
 if __name__ == '__main__':
     run_tests()

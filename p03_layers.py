@@ -513,6 +513,7 @@ class P3BCELoss(_WeightedLoss):
 
 # Define the neural network classes
 
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -676,11 +677,11 @@ def run_experiment(args):
     callbacklist.on_train_end()
     tensorboard_writer.close()
 
-    if args.dataset == 'fashion_mnist' and val_acc > 0.92 and val_acc <= 1.0:
-        print("Congratulations, you beat the Question 13 minimum of 92 with ({:.2f}%) validation accuracy!".format(val_acc))
+    if args.dataset == 'fashion_mnist' and val_acc > 0.8 and val_acc <= 1.0:
+        print("Congratulations, you beat the Question 9 minimum of 0.80 with ({:.2f}%) validation accuracy!".format(val_acc))
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
     # Run the primary training and validation loop
     run_experiment(args)
-
