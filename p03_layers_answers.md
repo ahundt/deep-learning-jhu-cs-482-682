@@ -1,7 +1,11 @@
-# deep-learning-jhu-cs-482-682
+# deep-learning-jhu-cs-482-682 p03 Layers
 
-## Names
+## Name, JHED ID, Github ID of each student
+
+ -
 
 # Answers
 
 TODO answer all questions
+
+## Question 8
