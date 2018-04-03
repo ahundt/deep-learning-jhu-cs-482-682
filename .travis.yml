@@ -35,5 +35,7 @@ before_script:
 script:
   - py.test p02_fashion_mnist_tests.py
   - py.test p03_layers_tests.py
-  - python p02_fashion_mnist.py --dataset fashion_mnist --epochs 1 --batch-size 2048
-  - python p03_layers.py --dataset mnist --epochs 1 --batch-size 2048
+  # The actual training tests are disabled for the duration of the assignment
+  # to reduce travis runtime due to processing limitation
+  # - python p02_fashion_mnist.py --dataset fashion_mnist --epochs 1 --batch-size 2048
+  # - python p03_layers.py --dataset mnist --epochs 1 --batch-size 2048
