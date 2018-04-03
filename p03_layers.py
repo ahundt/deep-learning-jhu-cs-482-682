@@ -130,6 +130,24 @@ def prepareDatasetAndLogging(args):
     return tensorboard_writer, callbacklist, train_loader, test_loader
 
 
+def _assert_no_grad(variable):
+    assert not variable.requires_grad, \
+        "nn criterions don't compute the gradient w.r.t. targets - please " \
+        "mark these variables as not requiring gradients"
+
+
+class _Loss(Module):
+    def __init__(self, size_average=True):
+        super(_Loss, self).__init__()
+        self.size_average = size_average
+
+
+class _WeightedLoss(_Loss):
+    def __init__(self, weight=None, size_average=True):
+        super(_WeightedLoss, self).__init__(size_average)
+self.register_buffer('weight', weight)
+
+
 class P3SGD(optim.Optimizer):
     r"""Implements stochastic gradient descent (optionally with momentum).
 
@@ -258,7 +276,7 @@ class P3Dropout(Module):
             + inplace_str + ')'
 
 
-class P3Dropout2d(Module):
+class P3Dropout2d(nn.Module):
     r"""Randomly zeroes whole channels of the input tensor.
     The channels to zero-out are randomized on every forward call.
     Usually the input comes from :class:`nn.Conv2d` modules.
@@ -312,7 +330,7 @@ def linear(input, weight, bias=None):
 raise NotImplementedError
 
 
-class P3Linear(Module):
+class P3Linear(nn.Module):
     r"""Applies a linear transformation to the incoming data: :math:`y = Ax + b`
     Args:
         in_features: size of each input sample
@@ -401,7 +419,7 @@ class P3ReLU(Threshold):
             + inplace_str + ')'
 
 
-class P3ELU(Module):
+class P3ELU(nn.Module):
     r"""Applies element-wise,
     :math:`\text{ELU}(x) = \max(0,x) + \min(0, \alpha * (\exp(x) - 1))`
     Args:
