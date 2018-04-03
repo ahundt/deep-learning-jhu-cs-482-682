@@ -327,7 +327,7 @@ def linear(input, weight, bias=None):
         - Bias: :math:`(out\_features)`
         - Output: :math:`(N, *, out\_features)`
     """
-raise NotImplementedError
+    raise NotImplementedError
 
 
 class P3Linear(nn.Module):
@@ -390,7 +390,7 @@ def p3relu(input, inplace=False):
     raise NotImplementedError
 
 
-class P3ReLU(Threshold):
+class P3ReLU(nn.Threshold):
     r"""Applies the rectified linear unit function element-wise
     :math:`\text{ReLU}(x)= \max(0, x)`
     .. image:: _static/img/activation/ReLU.png

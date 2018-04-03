@@ -10,7 +10,6 @@ from torch.optim import SGD
 from torch.autograd import Variable
 from torch import sparse
 from test_common import TestCase, run_tests
-from p03_layers import P3SGD
 import p03_layers
 
 
@@ -237,6 +236,34 @@ class TestOptim(TestCase):
     def _build_params_dict_single(self, weight, bias, **kwargs):
         return [dict(params=bias, **kwargs)]
 
+    def test_sgd(self):
+        try:
+            self._test_rosenbrock(
+                lambda params: p03_layers.P3SGD(params, lr=1e-3),
+                wrap_old_fn(old_optim.sgd, learningRate=1e-3)
+            )
+            self._test_rosenbrock(
+                lambda params: p03_layers.P3SGD(params, lr=1e-3, momentum=0.9,
+                                        dampening=0, weight_decay=1e-4),
+                wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
+                            dampening=0, weightDecay=1e-4)
+            )
+            self._test_basic_cases(
+                lambda weight, bias: p03_layers.P3SGD([weight, bias], lr=1e-3)
+            )
+            self._test_basic_cases(
+                lambda weight, bias: p03_layers.P3SGD(
+                    self._build_params_dict(weight, bias, lr=1e-2),
+                    lr=1e-3)
+            )
+            self._test_basic_cases(
+                lambda weight, bias: p03_layers.P3SGD(
+                    self._build_params_dict_single(weight, bias, lr=1e-2),
+                    lr=1e-3)
+            )
+        except NotImplementedError:
+            pass
+
 
 def check_net(model):
     model.train()
@@ -251,39 +278,13 @@ def check_net(model):
     loss.backward()
     optimizer.step()
 
-def test_sgd(self):
-    try:
-        self._test_rosenbrock(
-            lambda params: P3SGD(params, lr=1e-3),
-            wrap_old_fn(old_optim.sgd, learningRate=1e-3)
-        )
-        self._test_rosenbrock(
-            lambda params: P3SGD(params, lr=1e-3, momentum=0.9,
-                                    dampening=0, weight_decay=1e-4),
-            wrap_old_fn(old_optim.sgd, learningRate=1e-3, momentum=0.9,
-                        dampening=0, weightDecay=1e-4)
-        )
-        self._test_basic_cases(
-            lambda weight, bias: P3SGD([weight, bias], lr=1e-3)
-        )
-        self._test_basic_cases(
-            lambda weight, bias: P3SGD(
-                self._build_params_dict(weight, bias, lr=1e-2),
-                lr=1e-3)
-        )
-        self._test_basic_cases(
-            lambda weight, bias: P3SGD(
-                self._build_params_dict_single(weight, bias, lr=1e-2),
-                lr=1e-3)
-        )
-    except NotImplementedError:
-        pass
-
 
 def test_nets():
     model = p03_layers.Net()
     check_net(model)
 
+def test_sgd():
+    return TestOptim
 
 if __name__ == '__main__':
     run_tests()
