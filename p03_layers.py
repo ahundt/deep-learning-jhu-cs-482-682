@@ -136,7 +136,7 @@ def _assert_no_grad(variable):
         "mark these variables as not requiring gradients"
 
 
-class _Loss(Module):
+class _Loss(nn.Module):
     def __init__(self, size_average=True):
         super(_Loss, self).__init__()
         self.size_average = size_average
@@ -235,7 +235,7 @@ class P3SGD(optim.Optimizer):
         return loss
 
 
-class P3Dropout(Module):
+class P3Dropout(nn.Module):
     r"""During training, randomly zeroes some of the elements of the input
     tensor with probability *p* using samples from a bernoulli distribution.
     The elements to zero are randomized on every forward call.
