@@ -27,11 +27,11 @@ install:
   - source activate dl-jhu-env
   - which python
   - conda list
-  - pip install --upgrade pytest flake8 tensorboardX onnx
+  - pip install --upgrade pytest flake8 tensorboardX onnx pycodestyle
   # - python setup.py install
 
 before_script:
-  # - py.test --pep8 -m pep8 -n0;
+  - pycodestyle --max-line-length=160 p03_layers.py p03_layers_tests.py
 script:
   - py.test p02_fashion_mnist_tests.py
   - py.test p03_layers_tests.py
