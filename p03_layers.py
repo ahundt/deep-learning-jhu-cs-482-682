@@ -145,7 +145,7 @@ class _Loss(nn.Module):
 class _WeightedLoss(_Loss):
     def __init__(self, weight=None, size_average=True):
         super(_WeightedLoss, self).__init__(size_average)
-self.register_buffer('weight', weight)
+        self.register_buffer('weight', weight)
 
 
 class P3SGD(optim.Optimizer):
