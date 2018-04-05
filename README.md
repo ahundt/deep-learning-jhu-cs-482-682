@@ -41,7 +41,7 @@ You may not be familiar with [GitHub](github.com), fortunately they provide many
 
 # Continuous Integration and Travis-CI
 
-[Continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) a way to avoid mistakes in your code by automated testing, generation of documentation, etc. every time you make a change. [Travis-CI](https://en.wikipedia.org/wiki/Travis_CI) is a company which provides computing resources and github functionality which is utilized for continuous integration in many open source projects and enterprises. [Travis-CI for beginners](https://docs.travis-ci.com/user/for-beginners/) has more details.
+[Continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) is a way to avoid mistakes in your code by automating testing, generation of documentation, etc. every time you make a change. [Travis-CI](https://en.wikipedia.org/wiki/Travis_CI) is a company which provides computing resources and github functionality which is utilized for continuous integration in many open source projects and enterprises. [Travis-CI for beginners](https://docs.travis-ci.com/user/for-beginners/) has more details.
 
 ## Modifying your .travis.yml
 
