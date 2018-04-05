@@ -5,6 +5,9 @@ Build Status of [github.com/ahundt/deep-learning-jhu-cs-482-682](https://travis-
 
 [![Build Status of github.com/ahundt/deep-learning-jhu-cs-482-682](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682.svg?branch=master)](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682)
 
+Public Course Starter Repository:
+
+
 ## Requirements for assignments
 
 These requirements will apply to all the assignments, but we use p02 as an example:
@@ -30,20 +33,23 @@ These requirements will apply to all the assignments, but we use p02 as an examp
     - Out of time errors mean the test did not pass Travis CI.
 - Have fun!
 
-# Learning to use GitHub
+# GitHub and Travis-CI
+
+## Learning to use GitHub
 
 You may not be familiar with [GitHub](github.com), fortunately they provide many [GitHub Guides](https://guides.github.com/) to help you get started! Here are the most important:
 
 - [Hello World](https://guides.github.com/activities/hello-world/) - the very basics
 - [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - this is the format your answers file should use
-- [Forking Projects](https://guides.github.com/activities/forking/) - how to work on your own personal copy
+- [Forking Projects](https://guides.github.com/activities/forking/) - How to work on your own personal copy
 - [Setting Up GitHub Classroom Group Assignments](https://youtu.be/-52quDR2QSc) - How to set up your group
+- [Merging project changes from other repositories into your fork](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) - How to bring updates into your own personal copy of the code.
 
-# Continuous Integration and Travis-CI
+## Continuous Integration and Travis-CI
 
 [Continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) is a way to avoid mistakes in your code by automating testing, generation of documentation, etc. every time you make a change. [Travis-CI](https://en.wikipedia.org/wiki/Travis_CI) is a company which provides computing resources and github functionality which is utilized for continuous integration in many open source projects and enterprises. [Travis-CI for beginners](https://docs.travis-ci.com/user/for-beginners/) has more details.
 
-## Modifying your .travis.yml
+### Modifying your .travis.yml
 
 If you want to run your training scripts on travis you can simply update the appropriate line.
 ```
@@ -58,9 +64,23 @@ python p02_fashion_mnist.py --dataset fashion_mnist --lr 0.1
 
 Be sure that your unit tests are correct and passing in the final submission or it could affect your grade!
 
-## Build Status Marker
+### Build Status Marker
 
 The build status marker ([![Build Status of github.com/ahundt/deep-learning-jhu-cs-482-682](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682.svg?branch=master)](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682)) is set to the main assignment repository by default and does not track any other clones or forks. If you would like the marker to point to your own repository, edit this README.md file according to the [instructions in the travis-ci documentation for Embedding Status Images](https://docs.travis-ci.com/user/status-images/).
+
+### Auto Cancellation
+
+To speed up your build time please enable [the Travis-CI auto-cancellation feature](https://blog.travis-ci.com/2017-03-22-introducing-auto-cancellation).
+
+## Educational membership with GitHub and Travis-CI
+
+You may also want to sign up for the github and travis ci education programs at:
+
+https://education.github.com/
+
+https://education.travis-ci.com/
+
+It will get you full access to free private repositories additional computing resources as if you were a paying developer.
 
 # Programming Assignment 2 (100 points total)
 
