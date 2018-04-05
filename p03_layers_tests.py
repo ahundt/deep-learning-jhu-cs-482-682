@@ -290,5 +290,40 @@ def test_sgd():
     return TestOptim
 
 
+def test_p3dropout():
+    # TODO Implement me
+    pass
+
+
+def test_p3dropout2d():
+    # TODO Implement me
+    pass
+
+
+def test_p3linear():
+    # TODO Implement me
+    pass
+
+
+def test_p3relu_function():
+    # TODO Implement me
+    pass
+
+
+def test_p3relu_class():
+    # TODO Implement me
+    pass
+
+
+def test_p3elu():
+    # TODO Implement me
+    pass
+
+
+def test_p3bce_loss():
+    # TODO Implement me
+    pass
+
+
 if __name__ == '__main__':
     run_tests()

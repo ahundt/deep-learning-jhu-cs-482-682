@@ -384,13 +384,18 @@ class P3Linear(nn.Module):
 
 
 def p3relu(input, inplace=False):
-    r"""relu(input, threshold, value, inplace=False) -> Tensor
+    r"""relu(input, inplace=False) -> Tensor
     Applies the rectified linear unit function element-wise.
+    :math:`\text{ReLU}(x)= \max(0, x)`
+    .. image:: _static/img/activation/ReLU.png
+    Args:
+        inplace: can optionally do the operation in-place. Default: ``False``
     """
+    # TODO Implement me
     raise NotImplementedError
 
 
-class P3ReLU(nn.Threshold):
+class P3ReLU(nn.Module):
     r"""Applies the rectified linear unit function element-wise
     :math:`\text{ReLU}(x)= \max(0, x)`
     .. image:: _static/img/activation/ReLU.png
@@ -407,7 +412,7 @@ class P3ReLU(nn.Threshold):
     """
 
     def __init__(self, inplace=False):
-        super(ReLU, self).__init__(0, 0, inplace)
+        super(P3ReLU, self).__init__()
 
     def forward(self, input):
         # TODO Implement me
@@ -437,7 +442,7 @@ class P3ELU(nn.Module):
     """
 
     def __init__(self, alpha=1., inplace=False):
-        super(ELU, self).__init__()
+        super(P3ELU, self).__init__()
         self.alpha = alpha
         self.inplace = inplace
 
@@ -503,7 +508,7 @@ class P3BCELoss(_WeightedLoss):
         >>> output.backward()
     """
     def __init__(self, weight=None, size_average=True, reduce=True):
-        super(BCELoss, self).__init__(weight, size_average)
+        super(P3BCELoss, self).__init__(weight, size_average)
         self.reduce = reduce
 
     def forward(self, input, target):

@@ -290,6 +290,8 @@ Implement each of the following layers, some in functional format and others as 
 
  - You will be changing all files that begin with `p03_*`.
  - Implement every class and function with `raise NotImplementedError`.
+     - The starter code provides documentation of how it should work.
+     - You must implement the math, so you can utilize pytorch but you can't utilize an implementation from pytorch or elsewhere.
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
@@ -303,13 +305,26 @@ Implement each of the following layers, some in functional format and others as 
 ## Questions
 
 1. P3SGD class (10 points)
+    - Implement Stochastic Gradient Descent.
+    - Nesterov momentum is optional for the hypothetical users of your class, but a requirement for the assignment.
+    - Unit tests are already integrated for SGD to get you started.
 2. P3Dropout class (10 points)
+    - Randomly zero elements of the input tensor.
 3. P3Dropout2d class (10 points)
+    - Randomly zero whole channels of the input tensor.
 4. P3Linear class plus a backward pass (10 points)
+    - The basic `Linear` layer, sometimes also known as a dense layer or a fully connected layer.
+    - You must manually implement the backwards pass.
 5. p3relu function (10 points)
+    - Standard Rectified Linear Unit implemented as a function.
 6. P3ReLU class (10 points)
+    - Standard Rectified Linear Unit implemented as a class.
 7. P3ELU class plus a backward pass (10 points)
+    - [Exponential Linear Units](https://arxiv.org/abs/1511.07289)
+    - [ELU appears to be excellent at classifying Hot Dogs vs Not Hot Dog](https://medium.com/@timanglade/how-hbos-silicon-valley-built-not-hotdog-with-mobile-tensorflow-keras-react-native-ef03260747f3)
+    - You must manually implement the backwards pass.
 8. P3BCELoss (10 points)
+    - [Binary Cross Entropy Loss](https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_error_function_and_logistic_regression)
 9. Create a Net (20 points)
     - Update the `Net` class to utilize each of the classes and functions you implemented.
     - Demonstrate that you are able to train the new Net to get 80% accuracy on Fashion-MNIST.
