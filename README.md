@@ -60,7 +60,7 @@ Be sure that your unit tests are correct and passing in the final submission or 
 
 ## Build Status Marker
 
-The build status marker ([![Build Status of github.com/ahundt/deep-learning-jhu-cs-482-682](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682.svg?branch=master)](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682)) is set to the main assignment repository by default and does not track any other clones or forks. If you would like the marker to point to your own repository, edit this README.md file according to the [Embedding Status Images instructions in the travis-ci documentation](https://docs.travis-ci.com/user/status-images/).
+The build status marker ([![Build Status of github.com/ahundt/deep-learning-jhu-cs-482-682](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682.svg?branch=master)](https://travis-ci.org/ahundt/deep-learning-jhu-cs-482-682)) is set to the main assignment repository by default and does not track any other clones or forks. If you would like the marker to point to your own repository, edit this README.md file according to the [instructions in the travis-ci documentation for Embedding Status Images](https://docs.travis-ci.com/user/status-images/).
 
 # Programming Assignment 2 (100 points total)
 
