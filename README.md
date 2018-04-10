@@ -326,7 +326,7 @@ Implement each of the following layers, some in functional format and others as 
  - Unit Tests
      - For each class and function you must also implement a unit test that validates the correctness of your work.
      - Each unit test must be run in travis, and travis must pass.
-     - See p01 and the pytorch source code for examples of how to write a proper unit test, some initial tests of P3SGD are already there for you.
+     - See p02_fashion_mnist_tests.py and the pytorch source code for examples of how to write a proper unit test, some initial tests of P3SGD are already there for you.
      - All unit tests should take no longer than 120 seconds to run in total.
      - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
 
