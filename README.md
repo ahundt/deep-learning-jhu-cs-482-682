@@ -319,7 +319,7 @@ Implement each of the following layers, some in functional format and others as 
  - You will be changing all files that begin with `p03_*`.
  - Implement every class and function with `raise NotImplementedError`.
      - The starter code provides documentation of how it should work.
-     - You must implement the math, so you can utilize pytorch but you can't utilize an implementation from pytorch or elsewhere.
+     - You must manually implement the math for each question, so you can utilize pytorch's low level math APIs but you can't utilize or call an implementation of the assigned layer from pytorch or elsewhere.
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
@@ -357,5 +357,6 @@ Implement each of the following layers, some in functional format and others as 
     - Update the `Net` class to utilize each of the classes and functions you implemented.
     - Demonstrate that you are able to train the new Net to get 80% accuracy on Fashion-MNIST.
     - You must include the chart and a description in `p03_layers_answers.md` as you did in p02.
+    - Run once with a 10 class Fashion-MNIST loss, and once classifying `handbag` vs `not handbag` to demonstrate `P3BCELoss`. 
 
 6 points of each question will be devoted to the correctness of your answer and 4 points will be devoted to the quality with which your unit tests validate the correctness of your implementation. The remaining 10 points on item 10 will be based on your results in `p03_layers_answers.md`.
