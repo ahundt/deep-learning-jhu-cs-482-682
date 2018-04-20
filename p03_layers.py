@@ -131,9 +131,9 @@ def prepareDatasetAndLogging(args):
 
 
 def _assert_no_grad(variable):
-    assert not variable.requires_grad, \
-        "nn criterions don't compute the gradient w.r.t. targets - please " \
-        "mark these variables as not requiring gradients"
+    (assert not variable.requires_grad,
+        "nn criterions don't compute the gradient w.r.t. targets - please "
+        "mark these variables as not requiring gradients")
 
 
 class _Loss(nn.Module):
@@ -313,8 +313,7 @@ class P3Dropout2d(nn.Module):
 
     def __repr__(self):
         inplace_str = ', inplace' if self.inplace else ''
-        return self.__class__.__name__ + '(' \
-            + 'p=' + str(self.p) + inplace_str + ')'
+        return self.__class__.__name__ + '(' + 'p=' + str(self.p) + inplace_str + ')'
 
 
 def linear(input, weight, bias=None):
@@ -377,10 +376,10 @@ class P3Linear(nn.Module):
         raise NotImplementedError
 
     def __repr__(self):
-        return self.__class__.__name__ + '(' \
-            + 'in_features=' + str(self.in_features) \
-            + ', out_features=' + str(self.out_features) \
-            + ', bias=' + str(self.bias is not None) + ')'
+        return (self.__class__.__name__ + '('
+            + 'in_features=' + str(self.in_features)
+            + ', out_features=' + str(self.out_features)
+            + ', bias=' + str(self.bias is not None) + ')')
 
 
 def p3relu(input, inplace=False):
