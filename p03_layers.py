@@ -271,9 +271,9 @@ class P3Dropout(nn.Module):
 
     def __repr__(self):
         inplace_str = ', inplace' if self.inplace else ''
-        return self.__class__.__name__ + '(' \
-            + 'p=' + str(self.p) \
-            + inplace_str + ')'
+        return (self.__class__.__name__ + '('
+            + 'p=' + str(self.p)
+            + inplace_str + ')')
 
 
 class P3Dropout2d(nn.Module):
