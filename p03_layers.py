@@ -459,9 +459,9 @@ class P3ELU(nn.Module):
 
     def __repr__(self):
         inplace_str = ', inplace' if self.inplace else ''
-        return self.__class__.__name__ + '(' \
-            + 'alpha=' + str(self.alpha) \
-            + inplace_str + ')'
+        return (self.__class__.__name__ + '('
+            + 'alpha=' + str(self.alpha)
+            + inplace_str + ')')
 
 
 class P3BCELoss(_WeightedLoss):
