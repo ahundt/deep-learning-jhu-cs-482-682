@@ -319,7 +319,7 @@ Implement each of the following layers, some in functional format and others as 
  - You will be changing all files that begin with `p03_*`.
  - Implement every class and function with `raise NotImplementedError`.
      - The starter code provides documentation of how it should work.
-     - You must manually implement the math for each question, so you can utilize pytorch's low level math APIs but you can't utilize or call an implementation of the assigned layer from pytorch or elsewhere.
+     - You must manually implement the math, so you can utilize pytorch but you can't utilize an implementation from pytorch or elsewhere.
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
