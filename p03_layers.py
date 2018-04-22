@@ -271,9 +271,8 @@ class P3Dropout(nn.Module):
 
     def __repr__(self):
         inplace_str = ', inplace' if self.inplace else ''
-        return (self.__class__.__name__ + '('
-            + 'p=' + str(self.p)
-            + inplace_str + ')')
+        return (self.__class__.__name__ + '(' + 'p=' + str(self.p) +
+                inplace_str + ')')
 
 
 class P3Dropout2d(nn.Module):
@@ -329,6 +328,24 @@ def linear(input, weight, bias=None):
     raise NotImplementedError
 
 
+class P3LinearFunction(torch.autograd.Function):
+    """See P3Linear for details.
+    """
+
+    def forward(self, input):
+        # TODO Implement me
+        raise NotImplementedError
+
+    def backward(self, grad_output):
+        """
+        In the backward pass we receive a Tensor containing the gradient of the loss
+        with respect to the output, and we need to compute the gradient of the loss
+        with respect to the input.
+        """
+        # TODO manually implement a backwards pass
+        raise NotImplementedError
+
+
 class P3Linear(nn.Module):
     r"""Applies a linear transformation to the incoming data: :math:`y = Ax + b`
     Args:
@@ -366,20 +383,11 @@ class P3Linear(nn.Module):
         # TODO Implement me
         raise NotImplementedError
 
-    def backward(self, grad_output):
-        """
-        In the backward pass we receive a Tensor containing the gradient of the loss
-        with respect to the output, and we need to compute the gradient of the loss
-        with respect to the input.
-        """
-        # TODO manually implement a backwards pass
-        raise NotImplementedError
-
     def __repr__(self):
-        return (self.__class__.__name__ + '('
-            + 'in_features=' + str(self.in_features)
-            + ', out_features=' + str(self.out_features)
-            + ', bias=' + str(self.bias is not None) + ')')
+        return (self.__class__.__name__ + '(' +
+                'in_features=' + str(self.in_features) +
+                ', out_features=' + str(self.out_features) +
+                ', bias=' + str(self.bias is not None) + ')')
 
 
 def p3relu(input, inplace=False):
@@ -423,7 +431,37 @@ class P3ReLU(nn.Module):
             + inplace_str + ')'
 
 
-class P3ELU(nn.Module):
+class P3ELU(torch.autograd.Function):
+    r"""Applies element-wise,
+    :math:`\text{ELU}(x) = \max(0,x) + \min(0, \alpha * (\exp(x) - 1))`
+    Args:
+        alpha: the :math:`\alpha` value for the ELU formulation. Default: 1.0
+        inplace: can optionally do the operation in-place. Default: ``False``
+    Shape:
+        - Input: :math:`(N, *)` where `*` means, any number of additional
+          dimensions
+        - Output: :math:`(N, *)`, same shape as the input
+    .. image:: _static/img/activation/ELU.png
+    Examples::
+        >>> m = nn.ELU()
+        >>> input = torch.randn(2)
+        >>> output = m(input)
+    """
+
+    def forward(self, input):
+        raise NotImplementedError
+
+    def backward(self, grad_output):
+        """
+        In the backward pass we receive a Tensor containing the gradient of the loss
+        with respect to the output, and we need to compute the gradient of the loss
+        with respect to the input.
+        """
+        # TODO manually implement a backwards pass
+        raise NotImplementedError
+
+
+class P3ELU(nn.Modeule):
     r"""Applies element-wise,
     :math:`\text{ELU}(x) = \max(0,x) + \min(0, \alpha * (\exp(x) - 1))`
     Args:
@@ -448,20 +486,10 @@ class P3ELU(nn.Module):
     def forward(self, input):
         raise NotImplementedError
 
-    def backward(self, grad_output):
-        """
-        In the backward pass we receive a Tensor containing the gradient of the loss
-        with respect to the output, and we need to compute the gradient of the loss
-        with respect to the input.
-        """
-        # TODO manually implement a backwards pass
-        raise NotImplementedError
-
     def __repr__(self):
         inplace_str = ', inplace' if self.inplace else ''
-        return (self.__class__.__name__ + '('
-            + 'alpha=' + str(self.alpha)
-            + inplace_str + ')')
+        return (self.__class__.__name__ + '(' +
+                'alpha=' + str(self.alpha) + inplace_str + ')')
 
 
 class P3BCELoss(_WeightedLoss):
