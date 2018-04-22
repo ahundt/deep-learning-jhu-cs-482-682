@@ -343,7 +343,7 @@ Implement each of the following layers, some in functional format and others as 
 
 1. P3SGD class (10 points)
     - Implement [Stochastic Gradient Descent](http://ruder.io/optimizing-gradient-descent/) as a [pytorch Optimizer](http://pytorch.org/docs/stable/optim.html?highlight=optimizer#algorithms).
-    - Nesterov momentum, momentum, dampening, and other capabilities specified by the class definition and/or documentation are a requirement for the assignment.
+    - Nesterov momentum, momentum, dampening, [weight decay](https://stats.stackexchange.com/questions/29130/difference-between-neural-net-weight-decay-and-learning-rate) ([weight decay paper](https://papers.nips.cc/paper/563-a-simple-weight-decay-can-improve-generalization.pdf)) and other capabilities specified by the class definition and/or documentation are a requirement for the assignment.
     - Each variation of the SGD algorithm must be optional for the hypothetical users of your class based on their parameter choices.
     - Unit tests are already integrated for SGD to get you started.
 2. P3Dropout class (10 points)
