@@ -342,7 +342,7 @@ Implement each of the following layers, some in functional format and others as 
 ## Questions
 
 1. P3SGD class (10 points)
-    - Implement Stochastic Gradient Descent.
+    - Implement [Stochastic Gradient Descent](http://ruder.io/optimizing-gradient-descent/).
     - Nesterov momentum and other capabilities specified by the documentation are optional for the hypothetical users of your class, but a requirement for the assignment.
     - Unit tests are already integrated for SGD to get you started.
 2. P3Dropout class (10 points)

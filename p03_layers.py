@@ -31,7 +31,7 @@ parser.add_argument('--epochs', type=int, default=10, metavar='E',
 parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
 parser.add_argument('--optimizer', type=str, default='sgd', metavar='O',
-                    help='Optimizer options are sgd, p1sgd, adam, rms_prop')
+                    help='Optimizer options are sgd, p3sgd, adam, rms_prop')
 parser.add_argument('--momentum', type=float, default=0.5, metavar='MO',
                     help='SGD momentum (default: 0.5)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
@@ -163,7 +163,7 @@ class P3SGD(optim.Optimizer):
         nesterov (bool, optional): enables Nesterov momentum (default: False)
 
     Example:
-        >>> optimizer = torch.optim.P1SGD(model.parameters(), lr=0.1, momentum=0.9)
+        >>> optimizer = P3SGD(model.parameters(), lr=0.1, momentum=0.9)
         >>> optimizer.zero_grad()
         >>> loss_fn(model(input), target).backward()
         >>> optimizer.step()
@@ -171,17 +171,16 @@ class P3SGD(optim.Optimizer):
     __ http://www.cs.toronto.edu/%7Ehinton/absps/momentum.pdf
 
     .. note::
-        The implementation of P1SGD with Momentum/Nesterov subtly differs from
+        The implementation of P3SGD with Momentum/Nesterov subtly differs from
         Sutskever et. al. and implementations in some other frameworks.
+        Let p, g, v, :math:`\rho`, and d denote the parameters, gradient,
+        velocity, momentum, and dampening respectively.
 
         Considering the specific case of Momentum, the update can be written as
 
         .. math::
                   v = \rho * v + g \\
                   p = p - lr * v
-
-        where p, g, v and :math:`\rho` denote the parameters, gradient,
-        velocity, and momentum respectively.
 
         This is in contrast to Sutskever et. al. and
         other frameworks which employ an update of the form
@@ -190,7 +189,16 @@ class P3SGD(optim.Optimizer):
              v = \rho * v + lr * g \\
              p = p - v
 
-        The Nesterov version is analogously modified.
+        Momentum with dampening is modified as
+
+        .. math::
+
+             v = \rho * v + (1 - d) * g \\
+             p = p - lr * v
+
+        Finally, the Nesterov momentum version can be analogously modified,
+        and in this case the dampening term must always be 0.
+
     """
 
     def __init__(self, params, lr=required, momentum=0, dampening=0,
@@ -202,7 +210,7 @@ class P3SGD(optim.Optimizer):
         super(P3SGD, self).__init__(params, defaults)
 
     def __setstate__(self, state):
-        super(P1Q8SGD, self).__setstate__(state)
+        super(P3SGD, self).__setstate__(state)
         for group in self.param_groups:
             group.setdefault('nesterov', False)
 
