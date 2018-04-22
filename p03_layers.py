@@ -260,7 +260,7 @@ class P3Dropout(nn.Module):
     """
 
     def __init__(self, p=0.5, inplace=False):
-        super(Dropout, self).__init__()
+        super(P3Dropout, self).__init__()
         # TODO Implement me
         raise NotImplementedError
 
@@ -302,7 +302,7 @@ class P3Dropout2d(nn.Module):
     """
 
     def __init__(self, p=0.5, inplace=False):
-        super(Dropout2d, self).__init__()
+        super(P3Dropout2d, self).__init__()
         # TODO Implement me
         raise NotImplementedError
 
@@ -430,7 +430,7 @@ class P3ReLU(nn.Module):
             + inplace_str + ')'
 
 
-class P3ELU(torch.autograd.Function):
+class P3ELUFunction(torch.autograd.Function):
     r"""Applies element-wise,
     :math:`\text{ELU}(x) = \max(0,x) + \min(0, \alpha * (\exp(x) - 1))`
     Args:
