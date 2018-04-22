@@ -319,7 +319,12 @@ Implement each of the following layers, some in functional format and others as 
  - You will be changing all files that begin with `p03_*`.
  - Implement every class and function with `raise NotImplementedError`.
      - The starter code provides documentation of how it should work.
-     - You must manually implement the math, so you can utilize pytorch but you can't utilize an implementation from pytorch or elsewhere.
+     - The purpose of this assignment is to learn the skills necessary to implement your own layers and understand how some fundamental deep learning algorithms work.
+     - You must manually implement the layers.
+     - You cannot utilize an existing module, functional, or function implementation of assigned components from pytorch or elsewhere.
+         - For example, this means you cannot simply call or copy `nn.functional.dropout()`, it is implemented in C/C++ anyway and we're expecting python here.
+     - You can utilize lower level pytorch capabilities if they are not part of an assigned component.
+     - You may need to implement two classes in some cases, one inheriting from `torch.nn.Module` and another from `torch.autograd.Function`.
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
@@ -329,12 +334,13 @@ Implement each of the following layers, some in functional format and others as 
      - See p02_fashion_mnist_tests.py and the pytorch source code for examples of how to write a proper unit test, some initial tests of P3SGD are already there for you.
      - All unit tests should take no longer than 120 seconds to run in total, this also means travis-ci runs should not exceed about 15 minutes.
      - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
+ - As always, all normal academic integrity requirements apply to this assignment.
 
 ## Questions
 
 1. P3SGD class (10 points)
     - Implement Stochastic Gradient Descent.
-    - Nesterov momentum is optional for the hypothetical users of your class, but a requirement for the assignment.
+    - Nesterov momentum and other capabilities specified by the documentation are optional for the hypothetical users of your class, but a requirement for the assignment.
     - Unit tests are already integrated for SGD to get you started.
 2. P3Dropout class (10 points)
     - Randomly zero elements of the input tensor.
@@ -357,6 +363,6 @@ Implement each of the following layers, some in functional format and others as 
     - Update the `Net` class to utilize each of the classes and functions you implemented.
     - Demonstrate that you are able to train the new Net to get 80% accuracy on Fashion-MNIST.
     - You must include the chart and a description in `p03_layers_answers.md` as you did in p02.
-    - Run once with a 10 class Fashion-MNIST loss, and once classifying `handbag` vs `not handbag` to demonstrate `P3BCELoss`. 
+    - Run once with a 10 class Fashion-MNIST loss, and once classifying `handbag` vs `not handbag` to demonstrate `P3BCELoss`.
 
 6 points of each question will be devoted to the correctness of your answer and 4 points will be devoted to the quality with which your unit tests validate the correctness of your implementation. The remaining 10 points on item 10 will be based on your results in `p03_layers_answers.md`.
