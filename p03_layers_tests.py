@@ -326,4 +326,7 @@ def test_p3bce_loss():
 
 
 if __name__ == '__main__':
+    # Automatically call every function
+    # in this file which begins with test.
+    # see unittest library docs for details.
     run_tests()
