@@ -337,6 +337,7 @@ Implement each of the following layers, some in functional format and others as 
      - All unit tests should take no longer than 120 seconds to run in total, this also means travis-ci runs should not exceed about 15 minutes.
      - The "correct" unit test answer will not be fully defined in advance. Part of this exercise is to think abut how your algorithm might fail, and come up with tests to check for those mistakes.
  - As always, all normal academic integrity requirements apply to this assignment.
+     - Cite sources, don't copy/paste solutions, etc.
 
 ## Questions
 
