@@ -329,7 +329,8 @@ Implement each of the following layers, some in functional format and others as 
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
- - Unit Tests
+ - [Unit Tests](http://docs.python-guide.org/en/latest/writing/tests/)
+     - [unittest](https://docs.python.org/2/library/unittest.html) is the python library used for these tests.
      - For each class and function you must also implement a unit test that validates the correctness of your work.
      - Each unit test must be run in travis, and travis must pass.
      - See p02_fashion_mnist_tests.py and the pytorch source code for examples of how to write a proper unit test, some initial tests of P3SGD are already there for you.
