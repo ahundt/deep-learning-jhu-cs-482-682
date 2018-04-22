@@ -369,7 +369,7 @@ class P3Linear(nn.Module):
     """
 
     def __init__(self, in_features, out_features, bias=True):
-        super(Linear, self).__init__()
+        super(P3Linear, self).__init__()
         raise NotImplementedError
 
     def reset_parameters(self):
