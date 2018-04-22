@@ -235,9 +235,14 @@ class P3SGD(optim.Optimizer):
                 # TODO Implement me
                 raise NotImplementedError
 
-                # you will also need to use
-                # param_state['momentum_buffer']
-                # group['lr']
+                # You will also need to use:
+                #
+                # 1. The gradient of the current param
+                #       d_p = p.grad.data
+                # 2. The momentum buffer storing the previous step's momentum
+                #       param_state['momentum_buffer']
+                # 3. The current stored learning rate
+                #       group['lr']
 
         return loss
 
