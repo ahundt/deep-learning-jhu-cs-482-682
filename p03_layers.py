@@ -460,7 +460,7 @@ class P3ELUFunction(torch.autograd.Function):
         raise NotImplementedError
 
 
-class P3ELU(nn.Modeule):
+class P3ELU(nn.Module):
     r"""Applies element-wise,
     :math:`\text{ELU}(x) = \max(0,x) + \min(0, \alpha * (\exp(x) - 1))`
     Args:
