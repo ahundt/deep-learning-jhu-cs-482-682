@@ -325,6 +325,7 @@ Implement each of the following layers, some in functional format and others as 
          - For example, this means you cannot simply call or copy `nn.functional.dropout()`, it is implemented in C/C++ anyway and we're expecting python here.
      - You can utilize lower level pytorch capabilities if they are not part of an assigned component.
      - You may need to implement two classes in some cases, one inheriting from `torch.nn.Module` and another from `torch.autograd.Function`.
+         - Details can be found in the [documentation on extending pytorch](http://pytorch.org/docs/stable/notes/extending.html).
  - Backpropagation
      - For each layer that defines `backward()` you must manually implement the backpropagation step, and [pytorch custom backwards() examples can be found here](https://github.com/jcjohnson/pytorch-examples/blob/master/README.md).
      - For all others you may use the autograd functionality supplied in pytorch.
