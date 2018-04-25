@@ -22,7 +22,7 @@ install:
   - conda info -a
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n dl-jhu-env python=$TRAVIS_PYTHON_VERSION pip numpy chainer torchvision tensorflow-tensorboard tqdm pytorch-cpu torchvision -c pytorch
+  - conda create -q -n dl-jhu-env python=$TRAVIS_PYTHON_VERSION pip numpy chainer torchvision=0.2.0 tensorflow-tensorboard tqdm pytorch-cpu=0.3.1 torchvision -c pytorch
   # some stuff is pip other things are conda, see https://github.com/ContinuumIO/anaconda-issues/issues/1429
   - source activate dl-jhu-env
   - which python
